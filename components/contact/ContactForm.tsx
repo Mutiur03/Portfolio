@@ -1,5 +1,5 @@
 "use client";
-
+import axios from "axios";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -51,12 +51,28 @@ export function ContactForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log(values);
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
-      variant: "default", 
-    });
-    form.reset();
+    try {
+      const response = await axios.post("/api/contact_mail", {
+        email: values.email,
+        subject: values.subject,
+        message: values.message,
+        name: values.name,
+      });
+      console.log("Email sent successfully:", response.data);
+      toast({
+        title: "Message Sent!",
+        description: "Thank you for reaching out. I'll get back to you soon.",
+        variant: "default",
+      });
+      form.reset();
+    } catch (error) {
+      console.error("Error sending message:", error);
+      toast({
+        title: "Error Sending Message",
+        description: "There was an issue sending your message. Please try again later.",
+        variant: "destructive",
+      });
+    }
   }
 
   return (

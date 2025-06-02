@@ -20,7 +20,7 @@ export const projectsData: Project[] = [
     imageUrl: "/bdapps_proj.png",
     dataAiHint: "online shopping",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder video
-    githubUrl: "https://github.com",
+    githubUrl: "https://github.com/Mutiur03/bdapps",
     liveUrl: "#",
     category: "web",
     galleryImages: [

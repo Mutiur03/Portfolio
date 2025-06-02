@@ -1,3 +1,4 @@
+'use client';
 import { Badge } from '@/components/ui/badge';
 import { Container } from '@/components/shared/Container';
 import { AnimatedElement } from '@/components/shared/AnimatedElement';
