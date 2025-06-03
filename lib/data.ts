@@ -41,7 +41,7 @@ export const projectsData: Project[] = [
     longDescription:
       "A web application designed to streamline project workflows. It offers features like task creation and assignment, progress tracking, real-time collaboration through comments and notifications, and file sharing. Built with React, Firebase for real-time database and authentication, and Material UI for the component library. Focused on intuitive UI/UX to enhance productivity.",
     technologies: ["React", "Firebase", "Material UI", "Node.js"],
-    imageUrl: "https://placehold.co/600x400.png",
+    imageUrl: "/school_proj.png",
     dataAiHint: "team collaboration",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     githubUrl: "https://github.com",
@@ -64,7 +64,7 @@ export const projectsData: Project[] = [
     longDescription:
       "This innovative tool leverages OpenAI's GPT models to assist users in creating engaging blog content. Users can input topics, keywords, and desired tone, and the application generates well-structured articles. The stack includes Python (Flask) for the backend AI integration, Next.js for the frontend, and a custom-trained model for specific content styles.",
     technologies: ["Next.js", "Python", "Flask", "OpenAI API", "Docker"],
-    imageUrl: "https://placehold.co/600x400.png",
+    imageUrl: "/portfolio_proj.png",
     dataAiHint: "artificial intelligence writing",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     githubUrl: "https://github.com",
