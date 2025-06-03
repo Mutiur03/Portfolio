@@ -147,6 +147,93 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
           </aside>
         </div>
 
+        {/* Live Preview Section - Full Width */}
+        {project.liveUrl && project.liveUrl !== '#' && (
+          <AnimatedElement delay={350} className="mt-16">
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="text-2xl md:text-3xl font-semibold font-headline !text-primary flex items-center justify-center">
+                  <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="flex items-center hover:opacity-80 transition-opacity">
+                    Live Preview
+                    <ExternalLink className="ml-2 h-5 w-5" />
+                  </Link>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="p-6">
+                {/* Mobile Frame - visible on small screens */}
+                <div className="block lg:hidden">
+                  <div className="mx-auto w-72 h-[580px] bg-gray-900 rounded-[2.5rem] p-3 shadow-2xl">
+                    <div className="w-full h-full bg-black rounded-[2rem] overflow-hidden relative">
+                      {/* Phone screen */}
+                      <div className="w-full h-full bg-white rounded-[2rem] overflow-hidden relative">
+                        {/* Status bar with punch hole and time */}
+                        <div className="absolute top-0 left-0 right-0 h-8 bg-black z-20 flex items-center justify-between px-4 rounded-t-[2rem]">
+                          {/* Time on left */}
+                          <span className="text-white text-sm font-medium">
+                            {new Date().toLocaleTimeString('en-US', {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              hour12: false
+                            })}
+                          </span>
+                          {/* Punch hole camera */}
+                          <div className="w-3 h-3 bg-black rounded-full border-2 border-gray-800"></div>
+                          {/* Battery and signal icons area */}
+                          <div className="flex items-center space-x-1">
+                            <div className="w-4 h-2 border border-white rounded-sm">
+                              <div className="w-3 h-1 bg-white rounded-sm m-0.5"></div>
+                            </div>
+                          </div>
+                        </div>
+                        {/* Website content */}
+                        <div className="w-full h-full pt-8">
+                          <iframe
+                            src={project.liveUrl}
+                            title={`${project.title} Mobile Preview`}
+                            className="w-full h-full border-0"
+                            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Laptop Frame - visible on large screens */}
+                <div className="hidden lg:block">
+                  <div className="mx-auto max-w-6xl">
+                    {/* Laptop screen */}
+                    <div className="bg-gray-900 rounded-3xl p-8 shadow-2xl">
+                      <div className="w-full h-[600px] bg-black rounded-xl overflow-hidden relative">
+                        {/* Laptop camera and brand */}
+                        <div className="absolute top-3 left-1/2 transform -translate-x-1/2 flex items-center space-x-2 z-10">
+                          <div className="w-2 h-2 bg-gray-500 rounded-full"></div>
+                          <div className="w-1 h-1 bg-green-400 rounded-full"></div>
+                        </div>
+                        {/* Laptop screen content */}
+                        <div className="w-full h-full bg-white rounded-xl overflow-hidden mt-2">
+                          <iframe
+                            src={project.liveUrl}
+                            title={`${project.title} Desktop Preview`}
+                            className="w-full h-full border-0"
+                            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-presentation"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    {/* Laptop base and keyboard */}
+                    {/* <div className="bg-gray-800 h-8 rounded-b-3xl shadow-xl relative">
+                      <div className="absolute bottom-1 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gray-600 rounded-full"></div>
+                    </div> */}
+                    {/* Laptop stand */}
+                    {/* <div className="bg-gray-700 h-2 mx-auto w-32 rounded-b-lg shadow-lg"></div> */}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </AnimatedElement>
+        )}
+
         <AnimatedElement delay={400} className="mt-16 text-center">
           <Button asChild variant="outline" size="lg" className="text-primary border-primary hover:bg-primary/10">
             <Link href="/projects">

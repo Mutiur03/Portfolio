@@ -21,7 +21,7 @@ export const projectsData: Project[] = [
     dataAiHint: "online shopping",
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder video
     githubUrl: "https://github.com/Mutiur03/bdapps",
-    liveUrl: "#",
+    liveUrl: "https://bdapps-production.up.railway.app/",
     category: "web",
     galleryImages: [
       { url: "https://placehold.co/800x600.png", dataAiHint: "product page" },

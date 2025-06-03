@@ -26,6 +26,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 data-ai-hint={project.dataAiHint || 'project image'}
                 width={600} 
                 height={338} 
+                priority
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
