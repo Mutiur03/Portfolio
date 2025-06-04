@@ -24,7 +24,7 @@ export function HeroSection() {
 
         <AnimatedElement delay={200}>
           <p className="text-lg md:text-xl text-foreground/80 mb-3 font-body">
-            
+            Hi! I'm Mutiur Rahman 👋
           </p>
         </AnimatedElement>
 
