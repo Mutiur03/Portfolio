@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode, type ElementType } from 'react';
 import { cn } from '@/lib/utils';
 
 interface AnimatedElementProps {
@@ -12,7 +12,7 @@ interface AnimatedElementProps {
     initial: string;
     final: string;
   };
-  as?: keyof JSX.IntrinsicElements; // Allows specifying the wrapping HTML element
+  as?: ElementType;
 }
 
 const defaultAnimation = {
@@ -30,14 +30,14 @@ export const AnimatedElement: React.FC<AnimatedElementProps> = ({
   as: Tag = 'div', // Default to 'div'
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null); // Ref type matches the default Tag
+  const ref = useRef<HTMLElement>(null); // Changed from HTMLDivElement to HTMLElement
 
   useEffect(() => {
     // Ensure this code only runs on the client
     if (typeof window === 'undefined') {
       return;
     }
-    
+
     const currentRef = ref.current;
     const observer = new IntersectionObserver(
       ([entry]) => {

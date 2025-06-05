@@ -1,10 +1,10 @@
 import { cn } from '@/lib/utils';
-import type { ReactNode } from 'react';
+import type { ReactNode, ElementType } from 'react';
 
 interface ContainerProps {
   children: ReactNode;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
+  as?: ElementType;
 }
 
 export const Container = ({ children, className, as: Tag = 'div' }: ContainerProps) => {

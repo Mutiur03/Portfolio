@@ -5,14 +5,38 @@ export async function POST(request: Request) {
   try {
     const { email, subject, message: text, name } = await request.json();
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: 587,
+      host: process.env.SMTP_HOST as string,
+      port: parseInt(process.env.SMTP_PORT as string, 10),
       secure: false,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+        user: process.env.SMTP_USER as string,
+        pass: process.env.SMTP_PASS as string,
       },
+    } as nodemailer.TransportOptions);
+    transporter.verify(function (error, success) {
+      if (error) {
+        console.log(error);
+      } else {
+        console.log("Server is ready to take our messages");
+      }
     });
+    console.log(
+      process.env.SMTP_USER,
+      process.env.SMTP_PASS,
+      process.env.SMTP_HOST,
+      process.env.SMTP_PORT
+    );
+    if (
+      !process.env.SMTP_HOST ||
+      !process.env.SMTP_USER ||
+      !process.env.SMTP_PASS ||
+      !process.env.SMTP_PORT
+    ) {
+      return NextResponse.json(
+        { error: "SMTP configuration is missing" },
+        { status: 500 }
+      );
+    }
 
     const htmlTemplate = `
     <!DOCTYPE html>
