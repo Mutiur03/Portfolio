@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   deploy:
@@ -32,14 +32,17 @@ jobs:
             git pull origin main
 
             echo "📦 Installing dependencies"
-            npm install
+            /usr/local/apps/nodejs22/bin/npm install
 
             echo "🏗️ Building Next.js app"
-            npm run build
+            /usr/local/apps/nodejs22/bin/npm run build
 
-            echo "🚀 Starting or restarting app with pm2"
-            pm2 restart portfolio-app || pm2 start server.js --name "portfolio-app"
+            echo "🧪 Running tests"
+            /usr/local/apps/nodejs22/bin/npm test"
 
-            echo "💾 Saving pm2 state"
-            pm2 save
+            echo "Stopping existing app"
+            kill -9 $(lsof -t -i:30009)
+
+            echo "🚀 Starting or restarting app"
+            /usr/local/apps/nodejs22/bin/node --trace-warnings server.js"            
           EOF
