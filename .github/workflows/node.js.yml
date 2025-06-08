@@ -26,7 +26,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} -p ${{ secrets.CPANEL_PORT || 22 }} << 'EOF'
             echo "📂 Navigating to portfolio project directory"
-            cd ~/public_html/portfolio
+            cd ~/public_html/Portfolio
 
             echo "🔄 Pulling latest code"
             git pull origin main
