@@ -10,22 +10,36 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up SSH access
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.CPANEL_SSH_KEY }}
+
+      - name: Deploy to cPanel server
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.CPANEL_USERNAME }}@${{ secrets.CPANEL_HOST }} -p ${{ secrets.CPANEL_PORT || 22 }} << 'EOF'
+            echo "📂 Navigating to portfolio project directory"
+            cd ~/public_html/portfolio
+
+            echo "🔄 Pulling latest code"
+            git pull origin main
+
+            echo "📦 Installing dependencies"
+            npm install
+
+            echo "🏗️ Building Next.js app"
+            npm run build
+
+            echo "🚀 Starting or restarting app with pm2"
+            pm2 restart portfolio-app || pm2 start server.js --name "portfolio-app"
+
+            echo "💾 Saving pm2 state"
+            pm2 save
+          EOF
