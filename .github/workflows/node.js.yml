@@ -32,14 +32,15 @@ jobs:
             git pull origin main
 
             echo "📦 Installing dependencies"
-            npm install
+            /usr/local/apps/nodejs22/bin/npm install
 
             echo "🏗️ Building Next.js app"
-            npm run build
+            /usr/local/apps/nodejs22/bin/npm run build
+
 
             echo "Stopping existing app"
             kill -9 $(lsof -t -i:30009)
 
             echo "🚀 Starting or restarting app"
-            /usr/local/apps/nodejs22/bin/node --trace-warnings server.js         
+            /usr/local/apps/nodejs22/bin/node --trace-warnings server.js    
           EOF
