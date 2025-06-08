@@ -35,7 +35,7 @@ jobs:
             /usr/local/apps/nodejs22/bin/npm install
 
             echo "🏗️ Building Next.js app"
-            /usr/local/apps/nodejs22/bin/next build
+            /usr/local/apps/nodejs22/bin/npm run build
 
             echo "Stopping existing app"
             kill -9 $(lsof -t -i:30009)
