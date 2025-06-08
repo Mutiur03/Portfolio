@@ -31,16 +31,16 @@ jobs:
             echo "🔄 Pulling latest code"
             git pull origin main
 
-            echo "📦 Installing dependencies"
-            /usr/local/apps/nodejs22/bin/npm install
+            # echo "📦 Installing dependencies"
+            # /usr/local/apps/nodejs22/bin/npm install
 
-            echo "🏗️ Building Next.js app"
-            /usr/local/apps/nodejs22/bin/npm run build
+            # echo "🏗️ Building Next.js app"
+            # /usr/local/apps/nodejs22/bin/npm run build
 
 
-            echo "Stopping existing app"
-            kill -9 $(lsof -t -i:30009)
+            # echo "Stopping existing app"
+            # kill -9 $(lsof -t -i:30009)
 
-            echo "🚀 Starting or restarting app"
-            /usr/local/apps/nodejs22/bin/node --trace-warnings server.js    
+            # echo "🚀 Starting or restarting app"
+            # /usr/local/apps/nodejs22/bin/node --trace-warnings server.js    
           EOF
