@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: ProjectDetailPageProps) {
     };
   }
   return {
-    title: `${project.title} - LuxeCode Portfolio`,
+    title: `${project.title} - By Mutiur Rahman`,
     description: project.shortDescription,
   };
 }
