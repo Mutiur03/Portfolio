@@ -5,31 +5,65 @@ export const projectsData: Project[] = [
     id: "1",
     title: "Fundit",
     slug: "fundit",
-    shortDescription:
-      "A full-featured online store with admin panel and payment integration.",
-    longDescription:
-      "This project involved building a scalable e-commerce solution from scratch. Key features include product management, user authentication, order processing, Stripe integration for payments, and a comprehensive admin dashboard for managing inventory and sales. The frontend was built with Next.js and Tailwind CSS for a responsive and modern user experience, while the backend utilized Node.js with Express and PostgreSQL.",
+    shortDescription: "Empowering Student Entrepreneurs Through Crowdfunding.",
+    longDescription: `Fundit is one of my proudest creations — a crowdfunding platform tailored for student innovators with bold startup ideas but limited capital. This platform bridges the gap between those visionaries and impact-focused investors.
+<h2>My Role:</h2>
+I was deeply involved in the backend layer of this project — from planning the user flow and designing database relationships to implementing real-time messaging and secure fund handling using escrow logic. It was both a technical challenge and a rewarding journey.
+
+<h2>Key Features:</h2>
+<ul>
+<li>Student entrepreneurs can create projects, set funding goals, and manage milestones.</li>
+<li>Investors can browse projects, contribute funds, and track progress.</li>
+<li>Admin dashboard for overseeing project statuses and user management.</li>
+<li>Escrow-based fund flow to ensure secure transactions and milestone approvals.</li>
+<li>Real-time chat system for seamless communication between students and investors.</li>
+<li>Full-stack architecture using React for the frontend, Node.js for the backend, and PostgreSQL for the database.</li>
+</ul>
+<h2>Technical Highlights:</h2>
+<ul>
+<li>Next.js for server-side rendering and static site generation.</li>
+<li>Tailwind CSS for responsive and modern UI design.</li>
+<li>Prisma ORM for efficient database interactions.</li>
+<li>Socket.io for real-time communication features.</li>
+<li>REST API for robust data handling and user authentication with NEXT Auth.</li>
+</ul>
+<h2>Project Management:</h2>
+<ul>
+<li>Implemented a 3-user role architecture: Student, Investor, Admin.</li>
+<li>Admin assignment logic to maintain focused project ownership.</li>
+<li>Project lifecycle management from pending → active → funded → completed.</li>
+<li>Escrow-based fund flow with milestone tracking and approval.</li>
+<li>Real-time chat system with Socket.io.</li>
+<li>Full-stack architecture (React + Node.js + PostgreSQL).</li>
+</ul>
+<h2>Why it Matters:</h2>
+We wanted to create more than a platform — we wanted to give student entrepreneurs the tools and support to launch real ventures, while offering investors a meaningful way to contribute and grow their capital.`,
     technologies: [
       "Next.js",
       "Tailwind CSS",
       "Node.js",
-      "Express",
       "PostgreSQL",
-      "Stripe",
+      "Prisma",
+      "Socket.io",
+      "REST API",
+      "NEXT Auth",
     ],
     imageUrl: "/bdapps_proj.png",
     dataAiHint: "online shopping",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ", // Placeholder video
+    videoUrl: "https://www.youtube.com/embed/AvoooD7cLzQ?si=PKARw4xVJ7nX34Ul",
     githubUrl: "https://github.com/Mutiur03/bdapps",
-    liveUrl: "https://bdapps-production.up.railway.app/",
+    liveUrl: "https://bdapps.onrender.com/",
     category: "web",
     galleryImages: [
-      { url: "https://placehold.co/800x600.png", dataAiHint: "product page" },
-      { url: "https://placehold.co/800x600.png", dataAiHint: "shopping cart" },
-      {
-        url: "https://placehold.co/800x600.png",
-        dataAiHint: "admin dashboard",
-      },
+      { url: "/fundit/proj_0.png"},
+      { url: "/fundit/proj_1.png"},
+      { url: "/fundit/proj_2.png"},
+      { url: "/fundit/proj_3.png"},
+      { url: "/fundit/proj_4.png"},
+      { url: "/fundit/proj_5.png"},
+      { url: "/fundit/proj_6.png"},
+      { url: "/fundit/proj_7.png"},
+      
     ],
   },
   {
