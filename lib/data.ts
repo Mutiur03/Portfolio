@@ -69,7 +69,7 @@ We wanted to create more than a platform — we wanted to give student entrepren
     title: "School Management System",
     slug: "school-management-system",
     shortDescription:
-      "A comprehensive web application for managing school operations, including student and administrative tasks.",
+      "A web app for managing school operations and student data.",
     longDescription: `  <h2>School Management System — Full-Stack Web Application</h2>
   <p>
     This project is a complete school management platform that I designed and developed entirely by myself. It is built to support the academic, administrative, and operational workflows of educational institutions by digitizing manual processes, streamlining communication, and centralizing data access for students, teachers, and administrators.
@@ -186,25 +186,55 @@ We wanted to create more than a platform — we wanted to give student entrepren
   },
   {
     id: "3",
-    title: "AI Powered Blog Generator",
-    slug: "ai-blog-generator",
+    title: "Portfolio Website",
+    slug: "portfolio-website",
     shortDescription:
-      "A content creation tool that uses AI to generate blog posts based on user prompts.",
-    longDescription:
-      "This innovative tool leverages OpenAI's GPT models to assist users in creating engaging blog content. Users can input topics, keywords, and desired tone, and the application generates well-structured articles. The stack includes Python (Flask) for the backend AI integration, Next.js for the frontend, and a custom-trained model for specific content styles.",
-    technologies: ["Next.js", "Python", "Flask", "OpenAI API", "Docker"],
+      "A modern, responsive portfolio website to showcase my projects, skills, and testimonials.",
+    longDescription: `<h2>Portfolio Website — Personal Branding Platform</h2>
+      <p>
+        This portfolio website is designed and developed to present my professional journey, highlight key projects, and provide a central hub for potential clients and collaborators to learn more about my work. It features a clean, accessible UI, dynamic project galleries, and integrated testimonials.
+      </p>
+      <h3>Features</h3>
+      <ul>
+        <li>Responsive design for seamless experience on all devices</li>
+        <li>Interactive project gallery with detailed views and media</li>
+        <li>Testimonials section with client feedback</li>
+        <li>Contact form with email integration</li>
+        <li>SEO optimized and fast-loading</li>
+        <li>Dark/light mode toggle</li>
+      </ul>
+      <h3>Tech Stack</h3>
+      <ul>
+        <li><strong>Frontend:</strong> Next.js, React, Tailwind CSS</li>
+        <li><strong>Backend:</strong> Static site (no backend required)</li>
+        <li><strong>Deployment:</strong> Vercel</li>
+        <li><strong>Other:</strong> Framer Motion for animations, EmailJS for contact form</li>
+      </ul>
+      <h3>What I Learned</h3>
+      <ul>
+        <li>Best practices in modern frontend development</li>
+        <li>UI/UX design for personal branding</li>
+        <li>Performance optimization and accessibility</li>
+        <li>SEO strategies for personal websites</li>
+      </ul>`,
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Framer Motion",
+      "NodeMailer",
+    ],
     imageUrl: "/portfolio_proj.png",
-    dataAiHint: "artificial intelligence writing",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    githubUrl: "https://github.com",
-    liveUrl: "#",
+    dataAiHint: "personal portfolio website screenshot",
+    videoUrl: "https://www.youtube.com/embed/your-demo-video-id",
+    githubUrl: "https://github.com/yourusername/portfolio",
+    liveUrl: "https://www.mutiurrahman.com/",
     category: "website",
     galleryImages: [
-      { url: "https://placehold.co/800x600.png", dataAiHint: "content editor" },
-      {
-        url: "https://placehold.co/800x600.png",
-        dataAiHint: "generation settings",
-      },
+      { url: "/portfolio/gallery_1.png", dataAiHint: "homepage" },
+      { url: "/portfolio/gallery_2.png", dataAiHint: "project gallery" },
+      { url: "/portfolio/gallery_3.png", dataAiHint: "testimonials section" },
+      { url: "/portfolio/gallery_4.png", dataAiHint: "contact form" },
     ],
   },
 ];
