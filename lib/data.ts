@@ -40,16 +40,15 @@ I was deeply involved in the backend layer of this project — from planning the
 We wanted to create more than a platform — we wanted to give student entrepreneurs the tools and support to launch real ventures, while offering investors a meaningful way to contribute and grow their capital.`,
     technologies: [
       "Next.js",
-      "Tailwind CSS",
-      "Node.js",
       "PostgreSQL",
       "Prisma",
       "Socket.io",
+      "Tailwind CSS",
+      "Node.js",
       "REST API",
       "NEXT Auth",
     ],
     imageUrl: "/bdapps_proj.png",
-    dataAiHint: "online shopping",
     videoUrl: "https://www.youtube.com/embed/AvoooD7cLzQ?si=PKARw4xVJ7nX34Ul",
     githubUrl: "https://github.com/Mutiur03/bdapps",
     liveUrl: [{ title: "Main Site", url: "https://bdapps.onrender.com/" }],
@@ -70,14 +69,73 @@ We wanted to create more than a platform — we wanted to give student entrepren
     title: "School Management System",
     slug: "school-management-system",
     shortDescription:
-      "A collaborative platform for managing tasks, deadlines, and team communication.",
-    longDescription:
-      "A web application designed to streamline project workflows. It offers features like task creation and assignment, progress tracking, real-time collaboration through comments and notifications, and file sharing. Built with React, Firebase for real-time database and authentication, and Material UI for the component library. Focused on intuitive UI/UX to enhance productivity.",
-    technologies: ["React", "Firebase", "Material UI", "Node.js"],
+      "A comprehensive web application for managing school operations, including student and administrative tasks.",
+    longDescription: `  <h2>School Management System — Full-Stack Web Application</h2>
+  <p>
+    This project is a complete school management platform that I designed and developed entirely by myself. It is built to support the academic, administrative, and operational workflows of educational institutions by digitizing manual processes, streamlining communication, and centralizing data access for students, teachers, and administrators.
+  </p>
+  <h3>Project Purpose</h3>
+  <p>
+    The main goal of this system is to reduce administrative overhead and enable a transparent, real-time academic management experience. With user-specific dashboards, automated report generation, secure file management, and integrated attendance and grading systems, it provides all the tools necessary to operate a modern school efficiently.
+  </p>
+
+  <h3>Main Features</h3>
+  <ul>
+    <li>Student Management: Add, update, and delete student profiles, including personal and academic details, class assignments, and profile pictures.</li>
+    <li>Teacher Management: Manage faculty records with qualifications, subject assignments, and profile images. Teachers have access to student lists, exams, and attendance based on permissions.</li>
+    <li>Subject Management: Create and assign subjects to specific classes. Supports bulk import via Excel sheets.</li>
+    <li>Exam and Marks Management: Schedule exams, input and edit marks, calculate GPA and grades, and generate marksheets automatically as printable PDFs.</li>
+    <li>Notice Board: Post and publish notices to specific user groups. Admins can upload attachments which are hosted securely on Google Drive with preview and download links.</li>
+    <li>Event and Gallery Management: Admins can create events and manage media uploads. Students can also upload event-related images which require admin approval before publication.</li>
+    <li>Attendance System: Daily or subject-wise attendance tracking with filters by class, subject, or date. Includes student promotion logic based on attendance and academic performance.</li>
+    <li>Authentication and Authorization: Role-based access control using secure JWT authentication. Admins and teachers have different access scopes throughout the platform.</li>
+    <li>PDF Generation: Marksheet and report generation with server-side rendering using Puppeteer.</li>
+    <li>Google Drive Integration: All uploaded PDF and notice files are stored in a specified Drive folder using a secure service account with download and preview links stored in the database.</li>
+  </ul>
+
+  <h3>Tech Stack</h3>
+  <ul>
+    <li><strong>Frontend:</strong> React, Vite, Tailwind CSS, Zustand, Framer Motion, Shadcn UI</li>
+    <li><strong>Backend:</strong> Node.js with Express</li>
+    <li><strong>Database:</strong> PostgreSQL managed with Prisma ORM</li>
+    <li><strong>Authentication:</strong> JWT-based authentication with protected routes and role-based logic</li>
+    <li><strong>File Handling:</strong> Multer for file uploads; Google Drive API for cloud storage</li>
+    <li><strong>PDF Reports:</strong> Puppeteer for server-side PDF rendering and formatting</li>
+    <li><strong>Excel Handling:</strong> xlsx library for importing bulk data such as subjects and students</li>
+  </ul>
+
+  <h3>System Architecture</h3>
+  <p>
+    The architecture follows a modular, RESTful API design pattern. It supports scalable deployment, integrates external services like Google Drive, and includes client-server separation with secure authentication. It also uses Prisma’s type-safe data modeling for clean and efficient database operations.
+  </p>
+
+  <h3>What I Learned</h3>
+  <ul>
+    <li>Built a full-stack application from scratch with production-level features</li>
+    <li>Learned how to integrate external APIs like Google Drive for real-time file hosting</li>
+    <li>Implemented complex role-based access controls for secure feature isolation</li>
+    <li>Created dynamic and printable PDF reports using headless browsers</li>
+    <li>Optimized database schemas for performance and clarity using Prisma ORM</li>
+    <li>Handled real-world problems such as bulk data import, file validation, and asynchronous processes</li>
+  </ul>`,
+    technologies: [
+      "React",
+      "TypeScript",
+      "Express",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "Shadcn",
+      "Node.js",
+      "Prisma",
+      "JWT",
+      "Google API",
+      "Puppeteer",
+      "Multer",
+      "xlsx",
+    ],
     imageUrl: "/school_proj.png",
-    dataAiHint: "team collaboration",
-    videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    githubUrl: "https://github.com",
+    videoUrl: "https://www.youtube.com/embed/EIk6t_aUbpY?si=L3yqah_jcltEogVD",
+    githubUrl: "https://github.com/Mutiur03/School",
     liveUrl: [
       {
         title: "Public Site",
@@ -140,7 +198,7 @@ We wanted to create more than a platform — we wanted to give student entrepren
     videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     githubUrl: "https://github.com",
     liveUrl: "#",
-    category: "saas",
+    category: "website",
     galleryImages: [
       { url: "https://placehold.co/800x600.png", dataAiHint: "content editor" },
       {
