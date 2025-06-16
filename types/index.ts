@@ -10,7 +10,7 @@ export interface Project {
   category: "web" | "website" | "mobile" | "saas" | "game";
   videoUrl?: string;
   githubUrl?: string;
-  liveUrl?: string;
+  liveUrl?: { title: string; url: string }[] | string;
   galleryImages?: { url: string; dataAiHint?: string }[];
 }
 
