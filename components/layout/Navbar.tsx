@@ -12,8 +12,8 @@ import { useTheme } from 'next-themes';
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/#about', label: 'About me' },
-  { href: '/#work', label: 'My Work' },
-  { href: '/#services', label: 'Services' },
+  { href: '/#work', label: 'Projects' },
+  { href: '/#services', label: 'Skills' },
   { href: '/#contact-cta', label: 'Contact me' },
 ];
 
