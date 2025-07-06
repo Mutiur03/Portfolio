@@ -9,8 +9,9 @@ import { AnimatedElement } from '@/components/shared/AnimatedElement';
 const FILTERS = [
   { label: 'All Projects', value: 'all' },
   { label: 'Web Applications', value: 'web' },
-  { label: 'Business Websites', value: 'website' },
+  { label: 'Websites', value: 'website' },
   { label: 'SaaS Platforms', value: 'saas' },
+  { label: 'Mobile Applications', value: 'mobile' },
 ];
 
 export default function ProjectsPage() {
