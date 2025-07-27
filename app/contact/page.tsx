@@ -4,7 +4,7 @@ import { AnimatedElement } from '@/components/shared/AnimatedElement';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
 export const metadata = {
-  title: 'Contact Me - LuxeCode Portfolio',
+  title: 'Contact Me - Mutiur Rahman',
   description: 'Get in touch for project inquiries or collaborations.',
 };
 

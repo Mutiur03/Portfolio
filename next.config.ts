@@ -1,4 +1,4 @@
-import type {NextConfig} from 'next';
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -11,14 +11,13 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'placehold.co',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "*",
+        port: "",
+        pathname: "/**",
       },
     ],
   },
-  allowedDevOrigins: ['9002-firebase-studio-1748785189826.cluster-44kx2eiocbhe2tyk3zoyo3ryuo.cloudworkstations.dev'],
 };
 
 export default nextConfig;

@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/shared/Container';
@@ -47,7 +48,7 @@ export function HeroSection() {
           </Button>
           <Button asChild variant="outline" size="lg" className="rounded-full text-foreground border-foreground/30 hover:border-accent hover:text-accent shadow-md px-8">
             {/* Assuming resume is a static file in /public */}
-            <Link href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+            <Link href="/Mutiur Rahman.pdf" target="_blank" rel="noopener noreferrer">
               my resume <Download className="ml-2 h-5 w-5" />
             </Link>
           </Button>

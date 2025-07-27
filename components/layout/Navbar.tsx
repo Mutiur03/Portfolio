@@ -12,8 +12,8 @@ import { useTheme } from 'next-themes';
 const navItems = [
   { href: '/', label: 'Home' },
   { href: '/#about', label: 'About me' },
-  { href: '/#work', label: 'My Work' },
-  { href: '/#services', label: 'Services' },
+  { href: '/#work', label: 'Projects' },
+  { href: '/#services', label: 'Skills' },
   { href: '/#contact-cta', label: 'Contact me' },
 ];
 
@@ -182,7 +182,7 @@ export function Navbar() {
                 <nav className="flex flex-col space-y-3">
                   <NavLinks mobile />
                   <Button asChild variant="outline" className="w-full rounded-full mt-4 border-foreground/30 hover:border-accent hover:text-accent">
-                    <Link href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Link href="https://github.com/Mutiur03" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)}>
                       <Github className="mr-2 h-4 w-4" /> GitHub
                     </Link>
                   </Button>
