@@ -23,7 +23,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-background/95">
-      <Container className="py-20 md:py-32">
+      <Container className="py-16 md:py-20">
         <AnimatedElement>
           <div className="text-center mb-16">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 font-headline text-foreground">
@@ -59,7 +59,7 @@ export default function ProjectsPage() {
 
         {/* Projects Grid */}
         {filteredProjects.length > 0 ? (
-          <AnimatedElement delay={0.4}>
+          <AnimatedElement delay={0.1}>
             <div className="grid gap-8 md:gap-10 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
               {filteredProjects.map((project, index) => (
                 <ProjectCard key={project.id} project={project} index={index} />

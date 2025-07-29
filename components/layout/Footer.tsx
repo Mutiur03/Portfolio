@@ -24,9 +24,9 @@ export function Footer() {
         <p className="text-sm">
           Made with 🩷 by Mutiur Rahman
         </p>
-        {/* <p className="text-xs mt-1">
-          Built with Next.js and Tailwind CSS.
-        </p> */}
+        <p className="text-xs text-secondary-foreground/70 mt-2">
+          All rights reserved.
+        </p>
       </Container>
     </footer>
   );

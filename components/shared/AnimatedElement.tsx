@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 interface AnimatedElementProps {
   children: ReactNode;
   className?: string;
-  delay?: number; // in ms
+  delay?: number; 
   threshold?: number;
   triggerOnce?: boolean;
   animationConfig?: {
@@ -27,13 +27,12 @@ export const AnimatedElement: React.FC<AnimatedElementProps> = ({
   threshold = 0.1,
   triggerOnce = true,
   animationConfig = defaultAnimation,
-  as: Tag = 'div', // Default to 'div'
+  as: Tag = 'div',
 }) => {
   const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null); // Changed from HTMLDivElement to HTMLElement
+  const ref = useRef<HTMLElement>(null); 
 
   useEffect(() => {
-    // Ensure this code only runs on the client
     if (typeof window === 'undefined') {
       return;
     }

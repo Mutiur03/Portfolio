@@ -17,7 +17,7 @@ export function ContactCTA() {
             I'm excited to learn about your ideas and contribute to your success.
           </p>
         </AnimatedElement>
-        <AnimatedElement delay={200}>
+        <AnimatedElement delay={100}>
           <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg transform hover:scale-105 transition-transform duration-300">
             <Link href="/contact">
               Get in Touch <Send className="ml-2 h-5 w-5" />

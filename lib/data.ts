@@ -49,10 +49,10 @@ We wanted to create more than a platform — we wanted to give student entrepren
       "NEXT Auth",
     ],
     imageUrl: "/bdapps_proj.png",
-    videoUrl: "https://www.youtube.com/embed/AvoooD7cLzQ?si=PKARw4xVJ7nX34Ul",
-    githubUrl: "https://github.com/Mutiur03/bdapps",
-    liveUrl: [{ title: "Main Site", url: "https://bdapps.onrender.com/" }],
     category: "web",
+    videoUrl: "https://www.youtube.com/embed/AvoooD7cLzQ?si=PKARw4xVJ7nX34Ul",
+    githubUrl: "https://github.com/Mutiur03/Fundit",
+    liveUrl: [{ title: "Main Site", url: "https://fundit.mutiurrahman.com/" }],
     galleryImages: [
       { url: "/fundit/proj_0.png" },
       { url: "/fundit/proj_1.png" },
@@ -70,29 +70,28 @@ We wanted to create more than a platform — we wanted to give student entrepren
     slug: "school-management-system",
     shortDescription:
       "A web app for managing school operations and student data.",
-    longDescription: `  <h2>School Management System — Full-Stack Web Application</h2>
+    longDescription: `
+  <h2>School Management System — Full-Stack Web Application</h2>
   <p>
-    This project is a complete school management platform that I designed and developed entirely by myself. It is built to support the academic, administrative, and operational workflows of educational institutions by digitizing manual processes, streamlining communication, and centralizing data access for students, teachers, and administrators.
+    This project is a complete school management platform built to digitize and streamline all core school operations. It supports academic, administrative, and communication workflows for students, teachers, and administrators.
   </p>
   <h3>Project Purpose</h3>
   <p>
-    The main goal of this system is to reduce administrative overhead and enable a transparent, real-time academic management experience. With user-specific dashboards, automated report generation, secure file management, and integrated attendance and grading systems, it provides all the tools necessary to operate a modern school efficiently.
+    The goal is to minimize manual paperwork, enable transparent record tracking, and provide real-time management of academic and administrative processes.
   </p>
-
   <h3>Main Features</h3>
   <ul>
-    <li>Student Management: Add, update, and delete student profiles, including personal and academic details, class assignments, and profile pictures.</li>
-    <li>Teacher Management: Manage faculty records with qualifications, subject assignments, and profile images. Teachers have access to student lists, exams, and attendance based on permissions.</li>
-    <li>Subject Management: Create and assign subjects to specific classes. Supports bulk import via Excel sheets.</li>
-    <li>Exam and Marks Management: Schedule exams, input and edit marks, calculate GPA and grades, and generate marksheets automatically as printable PDFs.</li>
-    <li>Notice Board: Post and publish notices to specific user groups. Admins can upload attachments which are hosted securely on Google Drive with preview and download links.</li>
-    <li>Event and Gallery Management: Admins can create events and manage media uploads. Students can also upload event-related images which require admin approval before publication.</li>
-    <li>Attendance System: Daily or subject-wise attendance tracking with filters by class, subject, or date. Includes student promotion logic based on attendance and academic performance.</li>
-    <li>Authentication and Authorization: Role-based access control using secure JWT authentication. Admins and teachers have different access scopes throughout the platform.</li>
-    <li>PDF Generation: Marksheet and report generation with server-side rendering using Puppeteer.</li>
-    <li>Google Drive Integration: All uploaded PDF and notice files are stored in a specified Drive folder using a secure service account with download and preview links stored in the database.</li>
+    <li>Student Management: Add, update, and manage student profiles, academic info, and images.</li>
+    <li>Teacher Management: Manage faculty profiles, subject assignments, and permissions.</li>
+    <li>Subject & Exam Management: Create/import subjects, schedule exams, input/edit marks, calculate GPA/grades.</li>
+    <li>Marksheet & Reports: Auto-generate PDF marksheets, downloadable/printable report cards, academic performance records.</li>
+    <li>Attendance & Promotion: Record attendance, filter by class/date, analyze trends, promote students based on performance.</li>
+    <li>Notice Board: Post notices with PDF attachments, preview/download files, simple notice management.</li>
+    <li>Gallery & Event Management: Create events, upload media, approve/publish student submissions.</li>
+    <li>Authentication & Security: JWT login, role-based access control, file validation, route protection.</li>
+    <li>Bulk Import: Excel-based bulk student and subject import.</li>
+    <li>Google Sheets Integration: Sync data </li>
   </ul>
-
   <h3>Tech Stack</h3>
   <ul>
     <li><strong>Frontend:</strong> React, Vite, Tailwind CSS, Zustand, Framer Motion, Shadcn UI</li>
@@ -103,12 +102,10 @@ We wanted to create more than a platform — we wanted to give student entrepren
     <li><strong>PDF Reports:</strong> Puppeteer for server-side PDF rendering and formatting</li>
     <li><strong>Excel Handling:</strong> xlsx library for importing bulk data such as subjects and students</li>
   </ul>
-
   <h3>System Architecture</h3>
   <p>
-    The architecture follows a modular, RESTful API design pattern. It supports scalable deployment, integrates external services like Google Drive, and includes client-server separation with secure authentication. It also uses Prisma’s type-safe data modeling for clean and efficient database operations.
+    Modular RESTful API, scalable deployment, external service integration, client-server separation, secure authentication, type-safe data modeling.
   </p>
-
   <h3>What I Learned</h3>
   <ul>
     <li>Built a full-stack application from scratch with production-level features</li>
@@ -117,7 +114,8 @@ We wanted to create more than a platform — we wanted to give student entrepren
     <li>Created dynamic and printable PDF reports using headless browsers</li>
     <li>Optimized database schemas for performance and clarity using Prisma ORM</li>
     <li>Handled real-world problems such as bulk data import, file validation, and asynchronous processes</li>
-  </ul>`,
+  </ul>
+  `,
     technologies: [
       "React",
       "TypeScript",
@@ -132,22 +130,20 @@ We wanted to create more than a platform — we wanted to give student entrepren
       "Puppeteer",
       "Multer",
       "xlsx",
+      "Zustand",
+      "Framer Motion",
+      "Cloudinary",
     ],
     imageUrl: "/school_proj.png",
+    category: "web",
     videoUrl: "https://www.youtube.com/embed/EIk6t_aUbpY?si=L3yqah_jcltEogVD",
     githubUrl: "https://github.com/Mutiur03/School",
     liveUrl: [
       {
         title: "Public Site",
-        url: "https://school-public-client.onrender.com",
-      },
-      { title: "Admin Panel", url: "https://school-admin-ae6r.onrender.com" },
-      {
-        title: "Student Dashboard",
-        url: "https://school-students.onrender.com",
+        url: "https://lbphs.gov.bd/",
       },
     ],
-    category: "web",
     galleryImages: [
       { url: "/school/public_1.jpg" },
       { url: "/school/public_2.png" },
@@ -226,10 +222,10 @@ We wanted to create more than a platform — we wanted to give student entrepren
     ],
     imageUrl: "/portfolio_proj.png",
     dataAiHint: "personal portfolio website screenshot",
+    category: "website",
     videoUrl: "",
     githubUrl: "https://github.com/Mutiur03/Portfolio",
-    liveUrl: "https://www.mutiurrahman.com/",
-    category: "website",
+    liveUrl: [{ title: "Main Site", url: "https://www.mutiurrahman.com/" }],
     galleryImages: [
       { url: "/portfolio/portfolio_1.png" },
       { url: "/portfolio/portfolio_2.png" },
@@ -238,6 +234,80 @@ We wanted to create more than a platform — we wanted to give student entrepren
       { url: "/portfolio/portfolio_5.png" },
       { url: "/portfolio/portfolio_6.png" },
       { url: "/portfolio/portfolio_7.png" },
+    ],
+  },
+  {
+    id: "4",
+    title: "Karubid",
+    slug: "karubid",
+    shortDescription:
+      "Multi-service platform for Interior, Cleaning, and Technical Solutions.",
+    longDescription: `
+<h2>Karubid — Multi-Service Business Platform</h2>
+<p>
+Karubid is a comprehensive web platform designed for a Bangladesh-based company offering premium interior design, cleaning, and technical services. The site showcases service details, team expertise, project portfolios, and client testimonials, all with a modern, responsive UI.
+</p>
+<h3>Features</h3>
+<ul>
+<li>Service Pages: Dedicated sections for Interior, Cleaning, and Technical services, each with detailed offerings, process steps, and pricing packages.</li>
+<li>Portfolio: Interactive galleries for before/after transformations and completed projects.</li>
+<li>Team Showcase: Highlighting key team members and their expertise.</li>
+<li>Testimonials: Rotating client reviews with ratings and company info.</li>
+<li>Consultation Modal: Multi-step form for booking free consultations, with service-specific options.</li>
+<li>Animated UI: Framer Motion-powered transitions and interactive elements.</li>
+<li>State Management: Zustand store for dynamic stats and modal control.</li>
+<li>Eco-Friendly Commitment: Dedicated section for sustainability initiatives.</li>
+</ul>
+<h3>Tech Stack</h3>
+<ul>
+<li><strong>Frontend:</strong> React, TypeScript, Vite, Tailwind CSS, Zustand, Framer Motion, Shadcn UI</li>
+<li><strong>Icons:</strong> Lucide React</li>
+<li><strong>State:</strong> Zustand for global store</li>
+<li><strong>Design:</strong> Responsive, accessible, and visually rich UI</li>
+</ul>
+<h3>What I Learned</h3>
+<ul>
+<li>Building a multi-service business site with modular, reusable components</li>
+<li>Advanced UI/UX design for service-based businesses</li>
+<li>Integrating animated transitions and interactive galleries</li>
+<li>Managing global state for dynamic stats and modals</li>
+<li>Designing scalable data structures for service offerings and team info</li>
+</ul>
+`,
+    technologies: [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Zustand",
+      "Framer Motion",
+      "Shadcn UI",
+      "Lucide React",
+    ],
+    imageUrl: "/karubid_main.png",
+    category: "website",
+    videoUrl: "",
+    githubUrl: "https://github.com/Mutiur03/Karubid",
+    liveUrl: [{ title: "Main Site", url: "https://www.karubidtech.com/" }],
+    galleryImages: [
+      { url: "/karubid/karubid_1.jpg" },
+      { url: "/karubid/karubid_2.png" },
+      { url: "/karubid/karubid_3.jpg" },
+      { url: "/karubid/karubid_4.png" },
+      { url: "/karubid/karubid_5.png" },
+      { url: "/karubid/karubid_6.png" },
+      { url: "/karubid/karubid_7.png" },
+      { url: "/karubid/karubid_8.png" },
+      { url: "/karubid/karubid_9.png" },
+      { url: "/karubid/karubid_10.png" },
+      { url: "/karubid/karubid_11.png" },
+      { url: "/karubid/karubid_12.png" },
+      { url: "/karubid/karubid_13.png" },
+      { url: "/karubid/karubid_14.png" },
+      { url: "/karubid/karubid_15.png" },
+      { url: "/karubid/karubid_16.png" },
+      { url: "/karubid/karubid_17.png" },
+      { url: "/karubid/karubid_18.png" },
+      { url: "/karubid/karubid_19.png" },
     ],
   },
 ];

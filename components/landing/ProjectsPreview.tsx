@@ -23,7 +23,7 @@ export function ProjectsPreview() {
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
-        <AnimatedElement delay={featuredProjects.length * 100 + 200}>
+        <AnimatedElement >
           <div className="mt-12 text-center">
             <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-md">
               <Link href="/projects">

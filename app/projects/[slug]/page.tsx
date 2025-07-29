@@ -105,7 +105,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
       : [];
 
   return (
-    <div className="py-16 md:py-24 bg-background">
+    <div className="py-12 md:py-16 bg-background">
       <Container>
         <AnimatedElement>
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-4 font-headline !text-primary">{project.title}</h1>
@@ -128,19 +128,18 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
           </AnimatedElement>
         )}
 
-        {!project.videoUrl && project.imageUrl && (
+        {/* {!project.videoUrl && project.galleryImages && project.galleryImages.length > 0 && (
           <AnimatedElement delay={100} className="mb-12">
             <Image
-              src={project.imageUrl}
+              src={project.galleryImages[0].url}
               alt={project.title}
-              data-ai-hint={project.dataAiHint || "project main image"}
               width={1200}
               height={675}
               className="w-full rounded-lg shadow-xl object-cover border border-border"
               priority
             />
           </AnimatedElement>
-        )}
+        )} */}
 
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Main Content */}
