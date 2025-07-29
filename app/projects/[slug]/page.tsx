@@ -6,10 +6,10 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Container } from '@/components/shared/Container';
 import { AnimatedElement } from '@/components/shared/AnimatedElement';
-import { Github, PlayCircle, ExternalLink, X } from 'lucide-react';
+import { Github, PlayCircle, ExternalLink, X, ChevronLeftIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import React, { useState, useCallback, useEffect, useRef,use } from 'react';
+import React, { useState, useCallback, useEffect, useRef, use } from 'react';
 
 
 
@@ -292,53 +292,53 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
               aria-modal="true"
               role="dialog"
             >
+              {/* Gradient Overlay covering the whole screen */}
+              <div
+                className="fixed inset-0 pointer-events-none z-0"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(30,41,59,0.7) 0%, rgba(59,130,246,0.15) 100%)'
+                }}
+              />
               <div
                 ref={modalRef}
-                className="relative w-screen h-screen max-w-none max-h-none flex flex-col justify-center items-center animate-scale-in"
+                className="relative w-full h-full max-w-7xl flex flex-col justify-center items-center animate-scale-in overflow-y-auto z-10"
                 onClick={e => e.stopPropagation()}
               >
                 {/* Glassmorphism Card */}
                 <div className="relative flex flex-col items-center justify-center w-full h-full">
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 pointer-events-none z-0" style={{
-                    background: 'linear-gradient(135deg, rgba(30,41,59,0.7) 0%, rgba(59,130,246,0.15) 100%)'
-                  }} />
                   {/* Modal Content */}
                   <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
                     {/* Close Button */}
                     <button
-                      className="absolute top-8 right-10 md:top-10 md:right-16 text-2xl md:text-3xl text-white/80 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/60 rounded-full bg-white/20 backdrop-blur-md shadow-lg transition-colors p-2"
+                      className="absolute top-4 right-4 md:top-8 md:right-10 text-2xl md:text-3xl text-white/80 hover:text-primary focus:outline-none focus:ring-2 focus:ring-primary/60 rounded-full bg-white/20 backdrop-blur-md shadow-lg transition-colors p-2"
                       onClick={closeModal}
                       aria-label="Close"
                       tabIndex={0}
                       style={{ border: '1.5px solid rgba(255,255,255,0.25)' }}
                     >
-                      <svg width="1.5em" height="1.5em" viewBox="0 0 20 20" fill="none">
-                        <path d="M6 6l8 8M6 14L14 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                      </svg>
+                      <X className="w-6 h-6" />
                     </button>
                     {/* Navigation & Image */}
-                    <div className="flex items-center justify-center w-full h-full px-2 md:px-8">
+                    <div className="flex items-center justify-between w-full px-2 md:px-8"
+                      style={{ minHeight: '300px' }}
+                    >
                       {/* Prev Arrow */}
                       <button
-                        className="mr-2 md:mr-6 p-3 md:p-4 rounded-full bg-white/30 hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/60 text-2xl text-white shadow-xl backdrop-blur-md border border-white/30 transition-all"
+                        className="mr-2 md:mr-6 p-3 md:p-4 rounded-full hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/60 text-2xl text-white shadow-xl backdrop-blur-md border border-white/30 transition-all"
                         onClick={prevImg}
                         aria-label="Previous image"
                         tabIndex={0}
-                        style={{ minWidth: 48, minHeight: 48 }}
+                        style={{ minWidth: 40, minHeight: 40 }}
                       >
-                        &#8592;
+                        <ChevronLeftIcon className="w-6 h-6" />
                       </button>
                       {/* Image Card */}
                       {project.galleryImages && project.galleryImages[selectedImgIdx] && (
-                        <div className="flex flex-col items-center w-full max-w-3xl">
-                          <div className="relative rounded-2xl border border-white/30 shadow-2xl overflow-hidden bg-white/10 backdrop-blur-lg transition-all"
+                        <div className="flex flex-col items-center w-full max-w-full sm:max-w-3xl">
+                          <div className="relative rounded-2xl border border-white/30 shadow-2xl overflow-hidden bg-white/10 backdrop-blur-lg transition-all flex items-center justify-center"
                             style={{
-                              maxHeight: '80vh',
-                              maxWidth: '80vw',
-                              display: 'flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
+                              maxHeight: '100vh',
+                              maxWidth: '90vw',
                             }}
                           >
                             <Image
@@ -346,34 +346,33 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                               alt={`${project.title} gallery image ${selectedImgIdx + 1}`}
                               width={1200}
                               height={900}
-                              className="object-contain"
+                              className="rounded-2xl"
                               style={{
-                                maxHeight: '80vh',
-                                maxWidth: '80vw',
+                                maxWidth: '100%',
+                                maxHeight: '100%',
                                 width: 'auto',
                                 height: 'auto',
+                                objectFit: 'cover',
                                 display: 'block',
-                                borderRadius: '1.25rem',
-                                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.25)'
+                                boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.25)',
                               }}
                             />
-
                           </div>
                         </div>
                       )}
                       {/* Next Arrow */}
                       <button
-                        className="ml-2 md:ml-6 p-3 md:p-4 rounded-full bg-white/30 hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/60 text-2xl text-white shadow-xl backdrop-blur-md border border-white/30 transition-all"
+                        className="ml-2 md:ml-6 p-3 md:p-4 rounded-full hover:bg-primary/20 focus:outline-none focus:ring-2 focus:ring-primary/60 text-2xl text-white shadow-xl backdrop-blur-md border border-white/30 transition-all"
                         onClick={nextImg}
                         aria-label="Next image"
                         tabIndex={0}
-                        style={{ minWidth: 48, minHeight: 48 }}
+                        style={{ minWidth: 40, minHeight: 40 }}
                       >
-                        &#8594;
+                        <ChevronLeftIcon className="w-6 h-6 transform rotate-180" />
                       </button>
                     </div>
                     {/* Progress Dots */}
-                    <div className="flex items-center justify-center gap-2 mt-6">
+                    <div className="flex items-center justify-center gap-2 mt-4 md:mt-6">
                       {project.galleryImages?.map((_, idx) => (
                         <span
                           key={idx}
@@ -383,8 +382,10 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                             }`}
                           style={{
                             border: idx === selectedImgIdx ? '2px solid #fff' : '1px solid rgba(255,255,255,0.2)',
-                            boxShadow: idx === selectedImgIdx ? '0 2px 8px 0 rgba(59,130,246,0.25)' : undefined
+                            boxShadow: idx === selectedImgIdx ? '0 2px 8px 0 rgba(59,130,246,0.25)' : undefined,
+                            cursor: 'pointer'
                           }}
+                          onClick={() => setSelectedImgIdx(idx)}
                         />
                       ))}
                     </div>
