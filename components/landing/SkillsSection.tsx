@@ -6,14 +6,15 @@ import { CheckCircle } from 'lucide-react';
 
 const skillCategories = {
   languages: [
-    'JavaScript', 'TypeScript', 'Python', 'C', 'C++', 'Java', 'HTML', 'CSS'
+    'JavaScript', 'TypeScript', 'Python', 'C', 'C++', 'Java', 'HTML', 'CSS', 'SQL'
   ],
   frontend: [
     'React', 'Next.js', 'Tailwind CSS', 'Material-UI', 'ShadCN/UI', 'Zustand', 'Framer Motion',
   ],
   backend: [
-    'Node.js', 'Express.js', 'Django', 'Flask', 'PostgreSQL', 'MongoDB',
-    'REST APIs', 'Git & GitHub', "Web Sockets", 'Prisma', 'Postman'
+    'Node.js', 'Express.js', 'Django', 'Flask', 'MySQL', 'PostgreSQL', 'SQLite', 'MongoDB',
+    'Git & GitHub', "Web Sockets", 'Prisma', 'Postman', 'GraphQL', 'Cloudinary',
+    'Docker', 'Redis', 'Redis Queue', 'REST API', 'Firebase',
   ]
 };
 
