@@ -21,9 +21,7 @@ export default function HomePage() {
       <section id="services" className="scroll-mt-20">
         <SkillsSection />
       </section>
-    
-      {/* <TestimonialsSection /> */}
-      <section id="contact-cta" className="scroll-mt-20">
+          <section id="contact-cta" className="scroll-mt-20">
         <ContactCTA />
       </section>
     </>

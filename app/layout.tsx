@@ -4,6 +4,8 @@ import { Toaster } from '@/components/ui/toaster';
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { AppProviders } from '@/components/layout/AppProviders';
+import Script from 'next/script';
+import Analytics from '@/components/Analytics';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mutiurrahman.com/'),
@@ -76,6 +78,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-606H5K3S67" strategy="afterInteractive"
+        ></Script>
+        <Script id="ga-init" strategy="afterInteractive"
+        >
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-606H5K3S67');
+          `}
+        </Script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -122,6 +136,7 @@ export default function RootLayout({
           </main>
           <Footer />
           <Toaster />
+          <Analytics />
         </AppProviders>
       </body>
     </html>
