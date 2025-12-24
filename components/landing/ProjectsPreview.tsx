@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button';
 import { Container } from '@/components/shared/Container';
 import { AnimatedElement } from '@/components/shared/AnimatedElement';
 import { ArrowRight } from 'lucide-react';
+export const dynamic = 'force-static';
+export const revalidate = 3600;
 export function ProjectsPreview() {
   const featuredProjects = projectsData.slice(0, 3);
 
