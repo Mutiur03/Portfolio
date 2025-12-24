@@ -1,4 +1,4 @@
-
+"use client";
 import { HeroSection } from '@/components/landing/HeroSection';
 import { AboutMeSection } from '@/components/landing/AboutMeSection';
 import { SkillsSection } from '@/components/landing/SkillsSection';

@@ -19,6 +19,7 @@ export function HeroSection() {
             height={128}
             className="rounded-full mb-6 shadow-lg"
             priority
+            unoptimized
           />
         </AnimatedElement>
 
