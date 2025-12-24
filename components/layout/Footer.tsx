@@ -1,9 +1,16 @@
+"use client";
+import { useEffect, useState } from 'react';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { Container } from '@/components/shared/Container';
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const [currentYear, setCurrentYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className="bg-secondary text-secondary-foreground py-8 border-t">
       <Container className="text-center">
@@ -19,7 +26,7 @@ export function Footer() {
           </Link>
         </div>
         <p className="text-sm">
-          &copy; {currentYear} Mutiur Rahman.
+          &copy; {currentYear ?? ''} Mutiur Rahman.
         </p>
         <p className="text-sm">
           Made with 🩷 by Mutiur Rahman

@@ -1,3 +1,4 @@
+import React, { Suspense } from 'react';
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
@@ -98,7 +99,6 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -130,13 +130,17 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning={true}>
         <AppProviders>
-          <Navbar />
+          <Suspense fallback={<div />}>
+            <Navbar />
+          </Suspense>
           <main className="flex-grow">
             {children}
           </main>
           <Footer />
           <Toaster />
-          <Analytics />
+          <Suspense fallback={null}>
+            <Analytics />
+          </Suspense>
         </AppProviders>
       </body>
     </html>
