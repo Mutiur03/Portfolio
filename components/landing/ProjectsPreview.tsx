@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import { projectsData } from '@/lib/data';
 import { ProjectCard } from '@/components/projects/ProjectCard';
@@ -5,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Container } from '@/components/shared/Container';
 import { AnimatedElement } from '@/components/shared/AnimatedElement';
 import { ArrowRight } from 'lucide-react';
-
 export function ProjectsPreview() {
   const featuredProjects = projectsData.slice(0, 3);
 
