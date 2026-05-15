@@ -7,7 +7,9 @@ import { Footer } from '@/components/layout/Footer';
 import { AppProviders } from '@/components/layout/AppProviders';
 import Script from 'next/script';
 import Analytics from '@/components/Analytics';
-
+import morgan from 'morgan';
+import { Analytics as VAnalytics } from "@vercel/analytics/next"
+export const logger = morgan('custom');
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mutiurrahman.com/'),
   title: 'Mutiur Rahman - Expert Fullstack Web Developer | React, Next.js, Node.js',
@@ -129,18 +131,15 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning={true}>
+        <VAnalytics />
+        <Analytics />
         <AppProviders>
-          <Suspense fallback={<div />}>
-            <Navbar />
-          </Suspense>
+          <Navbar />
           <main className="flex-grow">
             {children}
           </main>
           <Footer />
           <Toaster />
-          <Suspense fallback={null}>
-            <Analytics />
-          </Suspense>
         </AppProviders>
       </body>
     </html>
