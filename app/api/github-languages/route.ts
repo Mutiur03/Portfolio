@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { cacheLife } from 'next/cache';
 
 interface GitHubRepository {
   fork: boolean;
@@ -33,6 +34,7 @@ interface RateLimitTracker {
 const GITHUB_API_URL = 'https://api.github.com';
 const USERNAME_PATTERN = /^(?!-)(?!.*--)[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?$/i;
 const BATCH_SIZE = 8;
+const GITHUB_CACHE_SECONDS = 60 * 60;
 
 function getHeaders() {
   const headers: HeadersInit = {
@@ -66,7 +68,8 @@ function trackRateLimit(response: Response, tracker: RateLimitTracker) {
 async function fetchGitHub<T>(url: string, tracker: RateLimitTracker): Promise<T> {
   const response = await fetch(url, {
     headers: getHeaders(),
-    cache: 'no-store',
+    cache: 'force-cache',
+    next: { revalidate: GITHUB_CACHE_SECONDS },
   });
 
   trackRateLimit(response, tracker);
@@ -148,6 +151,34 @@ async function getLanguageTotals(repositories: GitHubRepository[], tracker: Rate
   return totals;
 }
 
+async function analyzeLanguages(username: string) {
+  'use cache';
+  cacheLife({
+    revalidate: GITHUB_CACHE_SECONDS,
+    expire: GITHUB_CACHE_SECONDS,
+  });
+
+  const tracker: RateLimitTracker = { current: null };
+  const repositories = await getRepositories(username, tracker);
+  const totals = await getLanguageTotals(repositories, tracker);
+  const totalBytes = Array.from(totals.values()).reduce((sum, bytes) => sum + bytes, 0);
+  const languages: LanguageStat[] = Array.from(totals.entries())
+    .map(([name, bytes]) => ({
+      name,
+      bytes,
+      percentage: totalBytes === 0 ? 0 : Number(((bytes / totalBytes) * 100).toFixed(2)),
+    }))
+    .sort((a, b) => b.bytes - a.bytes);
+
+  return {
+    username,
+    repositoriesAnalyzed: repositories.length,
+    totalBytes,
+    languages,
+    rateLimit: tracker.current ?? await getRateLimitStatus(),
+  };
+}
+
 export async function GET(request: NextRequest) {
   const username = request.nextUrl.searchParams.get('username')?.trim() ?? '';
 
@@ -158,29 +189,10 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const tracker: RateLimitTracker = { current: null };
-
   try {
-    const repositories = await getRepositories(username, tracker);
-    const totals = await getLanguageTotals(repositories, tracker);
-    const totalBytes = Array.from(totals.values()).reduce((sum, bytes) => sum + bytes, 0);
-    const languages: LanguageStat[] = Array.from(totals.entries())
-      .map(([name, bytes]) => ({
-        name,
-        bytes,
-        percentage: totalBytes === 0 ? 0 : Number(((bytes / totalBytes) * 100).toFixed(2)),
-      }))
-      .sort((a, b) => b.bytes - a.bytes);
-
-    return NextResponse.json({
-      username,
-      repositoriesAnalyzed: repositories.length,
-      totalBytes,
-      languages,
-      rateLimit: tracker.current ?? await getRateLimitStatus(),
-    });
+    return NextResponse.json(await analyzeLanguages(username));
   } catch (error) {
-    const rateLimit = tracker.current ?? await getRateLimitStatus();
+    const rateLimit = await getRateLimitStatus();
 
     if (error instanceof Error && error.message === 'GITHUB_USER_NOT_FOUND') {
       return NextResponse.json({ error: 'GitHub account not found.', rateLimit }, { status: 404 });

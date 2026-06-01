@@ -55,9 +55,7 @@ export function GitHubLanguagesSection() {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`/api/github-languages?username=${encodeURIComponent(trimmedUsername)}`, {
-        cache: 'no-store',
-      });
+      const response = await fetch(`/api/github-languages?username=${encodeURIComponent(trimmedUsername)}`);
       const data = await response.json();
       setRateLimit(data.rateLimit ?? null);
 
