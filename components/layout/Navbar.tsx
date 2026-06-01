@@ -15,7 +15,7 @@ const navItems = [
   { href: '/#about', label: 'About me' },
   { href: '/#work', label: 'Projects', altHref: '/projects' }, 
   { href: '/#services', label: 'Skills' },
-  { href: '/products', label: 'Products' },
+  { href: '/tools', label: 'Tools' },
   { href: '/#contact-cta', label: 'Contact me', altHref: '/contact' }, 
 ];
 

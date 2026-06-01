@@ -1,12 +1,13 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
-import { BarChart3, CircleGauge, Github, LoaderCircle, Search } from 'lucide-react';
+import { FormEvent, useEffect, useState } from 'react';
+import { BarChart3, CircleGauge, Copy, Github, LoaderCircle, Search } from 'lucide-react';
 import { AnimatedElement } from '@/components/shared/AnimatedElement';
 import { Container } from '@/components/shared/Container';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import languageColors from '@/lib/language-colors.json';
 
 interface LanguageStat {
   name: string;
@@ -28,14 +29,7 @@ interface RateLimit {
   reset: number;
 }
 
-const languageColors = [
-  'bg-accent',
-  'bg-chart-2',
-  'bg-chart-3',
-  'bg-chart-4',
-  'bg-chart-5',
-  'bg-primary',
-];
+const LANGUAGE_COLORS: Record<string, string> = languageColors;
 
 export function GitHubLanguagesSection() {
   const [username, setUsername] = useState('Mutiur03');
@@ -43,6 +37,11 @@ export function GitHubLanguagesSection() {
   const [rateLimit, setRateLimit] = useState<RateLimit | null>(null);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [origin, setOrigin] = useState('');
+
+  useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
 
   async function analyzeLanguages(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -73,6 +72,11 @@ export function GitHubLanguagesSection() {
       setIsLoading(false);
     }
   }
+
+  const svgUrl = result
+    ? `${origin}/api/github-languages/svg?username=${encodeURIComponent(result.username)}`
+    : '';
+  const markdown = `![GitHub Top Languages](${svgUrl})`;
 
   return (
     <section className="bg-background py-16 md:py-20">
@@ -158,22 +162,56 @@ export function GitHubLanguagesSection() {
                   )}
 
                   {result.languages.length > 0 ? (
-                    <div className="space-y-5">
-                      {result.languages.map((language, index) => (
-                        <div key={language.name}>
-                          <div className="mb-2 flex items-center justify-between gap-4 text-sm">
-                            <span className="font-medium">{language.name}</span>
-                            <span className="text-muted-foreground">{language.percentage.toFixed(2)}%</span>
+                    <>
+                      <div className="space-y-5">
+                        {result.languages.map((language) => (
+                          <div key={language.name}>
+                            <div className="mb-2 flex items-center justify-between gap-4 text-sm">
+                              <span className="font-medium">{language.name}</span>
+                              <span className="text-muted-foreground">{language.percentage.toFixed(2)}%</span>
+                            </div>
+                            <div className="h-2.5 overflow-hidden rounded-full bg-secondary">
+                              <div
+                                className="h-full rounded-full"
+                                style={{
+                                  width: `${language.percentage}%`,
+                                  backgroundColor: LANGUAGE_COLORS[language.name] ?? '#58a6ff',
+                                }}
+                              />
+                            </div>
                           </div>
-                          <div className="h-2.5 overflow-hidden rounded-full bg-secondary">
-                            <div
-                              className={`h-full rounded-full ${languageColors[index % languageColors.length]}`}
-                              style={{ width: `${language.percentage}%` }}
-                            />
-                          </div>
+                        ))}
+                      </div>
+                      <div className="mt-8 border-t border-border pt-6">
+                        <h3 className="mb-3 font-semibold text-primary">README SVG</h3>
+                        <img
+                          src={svgUrl}
+                          alt={`${result.username} GitHub top languages`}
+                          width="300"
+                          height="165"
+                          className="w-full max-w-[300px]"
+                        />
+                        <div className="mt-4 flex flex-col gap-3 sm:flex-row">
+                          <Input value={markdown} readOnly aria-label="README Markdown" />
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => navigator.clipboard.writeText(markdown)}
+                          >
+                            <Copy className="h-4 w-4" />
+                            Copy Markdown
+                          </Button>
                         </div>
-                      ))}
-                    </div>
+                        <a
+                          href={svgUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-3 inline-block text-sm text-accent hover:underline"
+                        >
+                          Open SVG directly
+                        </a>
+                      </div>
+                    </>
                   ) : (
                     <p className="text-sm text-muted-foreground">
                       No language data found in public, original repositories.
