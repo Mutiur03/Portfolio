@@ -8,7 +8,8 @@ import { AppProviders } from '@/components/layout/AppProviders';
 import Script from 'next/script';
 import Analytics from '@/components/Analytics';
 import morgan from 'morgan';
-import { Analytics as VAnalytics } from "@vercel/analytics/next"
+import { Analytics as VAnalytics } from "@vercel/analytics/next" 
+import { Observa } from "@mutiur03/observa-web"; 
 export const logger = morgan('custom');
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mutiurrahman.com/'),
@@ -78,6 +79,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const observaApiKey = process.env.NEXT_PUBLIC_OBSERVA_API_KEY;
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -133,6 +135,7 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <VAnalytics />
         <Analytics />
+        {observaApiKey && <Observa apiKey={observaApiKey} />}
         <AppProviders>
           <Navbar />
           <main className="flex-grow">
