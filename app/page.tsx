@@ -3,8 +3,8 @@ import { HeroSection } from '@/components/landing/HeroSection';
 import { AboutMeSection } from '@/components/landing/AboutMeSection';
 import { SkillsSection } from '@/components/landing/SkillsSection';
 import { ProjectsPreview } from '@/components/landing/ProjectsPreview';
-import { TestimonialsSection } from '@/components/landing/TestimonialsSection';
 import { ContactCTA } from '@/components/landing/ContactCTA';
+import { GitHubLanguagesSection } from '@/components/landing/GitHubLanguagesSection';
 
 export default function HomePage() {
   return (
@@ -21,7 +21,10 @@ export default function HomePage() {
       <section id="services" className="scroll-mt-20">
         <SkillsSection />
       </section>
-          <section id="contact-cta" className="scroll-mt-20">
+      <section id="github-languages" className="scroll-mt-20">
+        <GitHubLanguagesSection />
+      </section>
+      <section id="contact-cta" className="scroll-mt-20">
         <ContactCTA />
       </section>
     </>

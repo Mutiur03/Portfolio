@@ -1,7 +1,7 @@
 "use client";
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Moon, Sun, Menu, X, ArrowUpRight, Github } from 'lucide-react';
+import { Moon, Sun, Menu, X, Github } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
@@ -15,6 +15,7 @@ const navItems = [
   { href: '/#about', label: 'About me' },
   { href: '/#work', label: 'Projects', altHref: '/projects' }, 
   { href: '/#services', label: 'Skills' },
+  { href: '/#github-languages', label: 'Languages' },
   { href: '/#contact-cta', label: 'Contact me', altHref: '/contact' }, 
 ];
 
