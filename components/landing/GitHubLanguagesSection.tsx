@@ -18,6 +18,8 @@ interface LanguageResponse {
   repositoriesAnalyzed: number;
   languages: LanguageStat[];
   rateLimit: RateLimit | null;
+  cachedAt: number;
+  revalidatesAt: number;
 }
 
 interface RateLimit {
@@ -149,6 +151,11 @@ export function GitHubLanguagesSection() {
                       {result.repositoriesAnalyzed} public original repositories analyzed
                     </div>
                   </div>
+                  {Number.isFinite(result.revalidatesAt) && (
+                    <p className="mb-6 text-sm text-muted-foreground">
+                      Server cache refreshes after {new Date(result.revalidatesAt).toLocaleString()}.
+                    </p>
+                  )}
 
                   {result.languages.length > 0 ? (
                     <div className="space-y-5">

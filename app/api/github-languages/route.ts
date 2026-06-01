@@ -35,6 +35,7 @@ const GITHUB_API_URL = 'https://api.github.com';
 const USERNAME_PATTERN = /^(?!-)(?!.*--)[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?$/i;
 const BATCH_SIZE = 8;
 const GITHUB_CACHE_SECONDS = 60 * 60;
+const ANALYSIS_CACHE_VERSION = 2;
 
 function getHeaders() {
   const headers: HeadersInit = {
@@ -151,13 +152,14 @@ async function getLanguageTotals(repositories: GitHubRepository[], tracker: Rate
   return totals;
 }
 
-async function analyzeLanguages(username: string) {
+async function analyzeLanguages(username: string, cacheVersion: number) {
   'use cache';
   cacheLife({
     revalidate: GITHUB_CACHE_SECONDS,
     expire: GITHUB_CACHE_SECONDS,
   });
 
+  const cachedAt = Date.now();
   const tracker: RateLimitTracker = { current: null };
   const repositories = await getRepositories(username, tracker);
   const totals = await getLanguageTotals(repositories, tracker);
@@ -172,10 +174,13 @@ async function analyzeLanguages(username: string) {
 
   return {
     username,
+    cacheVersion,
     repositoriesAnalyzed: repositories.length,
     totalBytes,
     languages,
     rateLimit: tracker.current ?? await getRateLimitStatus(),
+    cachedAt,
+    revalidatesAt: cachedAt + GITHUB_CACHE_SECONDS * 1000,
   };
 }
 
@@ -190,7 +195,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    return NextResponse.json(await analyzeLanguages(username));
+    return NextResponse.json(await analyzeLanguages(username, ANALYSIS_CACHE_VERSION));
   } catch (error) {
     const rateLimit = await getRateLimitStatus();
 
