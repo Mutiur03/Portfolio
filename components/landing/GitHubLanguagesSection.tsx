@@ -18,13 +18,14 @@ interface LanguageResponse {
   username: string;
   repositoriesAnalyzed: number;
   languages: LanguageStat[];
-  rateLimit: RateLimit | null;
+  cacheEnabled: boolean;
   cachedAt: number;
   revalidatesAt: number;
 }
 
 interface RateLimit {
   limit: number;
+  used: number;
   remaining: number;
   reset: number;
 }
@@ -43,6 +44,11 @@ export function GitHubLanguagesSection() {
     setOrigin(window.location.origin);
   }, []);
 
+  async function refreshRateLimit() {
+    const response = await fetch('/api/github-rate-limit', { cache: 'no-store' });
+    setRateLimit(response.ok ? await response.json() : null);
+  }
+
   async function analyzeLanguages(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const trimmedUsername = username.trim();
@@ -58,13 +64,13 @@ export function GitHubLanguagesSection() {
     try {
       const response = await fetch(`/api/github-languages?username=${encodeURIComponent(trimmedUsername)}`);
       const data = await response.json();
-      setRateLimit(data.rateLimit ?? null);
 
       if (!response.ok) {
         throw new Error(data.error ?? 'Could not load GitHub language data.');
       }
 
       setResult(data);
+      // await refreshRateLimit();
     } catch (requestError) {
       setResult(null);
       setError(requestError instanceof Error ? requestError.message : 'Could not load GitHub language data.');
@@ -120,7 +126,7 @@ export function GitHubLanguagesSection() {
                 </p>
               )}
 
-              {rateLimit && (
+              {/* {rateLimit && (
                 <div className={`mt-4 flex flex-col gap-1 rounded-lg border px-4 py-3 text-sm sm:flex-row sm:items-center sm:justify-between ${
                   rateLimit.remaining === 0
                     ? 'border-destructive/40 bg-destructive/10 text-destructive'
@@ -128,13 +134,13 @@ export function GitHubLanguagesSection() {
                 }`}>
                   <span className="flex items-center gap-2 font-medium">
                     <CircleGauge className="h-4 w-4" />
-                    GitHub API calls left: {rateLimit.remaining} / {rateLimit.limit}
+                    GitHub API quota: {rateLimit.remaining} remaining / {rateLimit.limit} ({rateLimit.used} used)
                   </span>
                   <span>
                     Resets at {new Date(rateLimit.reset * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                   </span>
                 </div>
-              )}
+              )} */}
 
               {result && (
                 <div className="mt-8">
@@ -155,9 +161,14 @@ export function GitHubLanguagesSection() {
                       {result.repositoriesAnalyzed} public original repositories analyzed
                     </div>
                   </div>
-                  {Number.isFinite(result.revalidatesAt) && (
+                  {result.cacheEnabled && Number.isFinite(result.revalidatesAt) && (
                     <p className="mb-6 text-sm text-muted-foreground">
                       Server cache refreshes after {new Date(result.revalidatesAt).toLocaleString()}.
+                    </p>
+                  )}
+                  {!result.cacheEnabled && (
+                    <p className="mb-6 text-sm text-muted-foreground">
+                      Server cache disabled. Showing fresh GitHub data.
                     </p>
                   )}
 
@@ -190,6 +201,7 @@ export function GitHubLanguagesSection() {
                           width="300"
                           height="165"
                           className="w-full max-w-[300px]"
+                          // onLoad={refreshRateLimit}
                         />
                         <div className="mt-4 flex flex-col gap-3 sm:flex-row">
                           <Input value={markdown} readOnly aria-label="README Markdown" />

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {
   analyzeGitHubLanguages,
+  ENABLE_GITHUB_LANGUAGE_CACHE,
   GITHUB_CACHE_SECONDS,
   isValidGitHubUsername,
   type LanguageStat,
@@ -99,7 +100,9 @@ export async function GET(request: NextRequest) {
     return new NextResponse(renderSvg(username, analysis.languages), {
       headers: {
         'Content-Type': 'image/svg+xml; charset=utf-8',
-        'Cache-Control': `public, s-maxage=${GITHUB_CACHE_SECONDS}, stale-while-revalidate=${GITHUB_CACHE_SECONDS}`,
+        'Cache-Control': ENABLE_GITHUB_LANGUAGE_CACHE
+          ? `public, s-maxage=${GITHUB_CACHE_SECONDS}, stale-while-revalidate=${GITHUB_CACHE_SECONDS}`
+          : 'no-store',
       },
     });
   } catch {

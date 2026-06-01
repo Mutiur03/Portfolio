@@ -34,6 +34,7 @@ const GITHUB_API_URL = 'https://api.github.com';
 const USERNAME_PATTERN = /^(?!-)(?!.*--)[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?$/i;
 const BATCH_SIZE = 8;
 export const GITHUB_CACHE_SECONDS = 60 * 60;
+export const ENABLE_GITHUB_LANGUAGE_CACHE = true;
 const ANALYSIS_CACHE_VERSION = 3;
 
 export function isValidGitHubUsername(username: string) {
@@ -72,8 +73,12 @@ function trackRateLimit(response: Response, tracker: RateLimitTracker) {
 async function fetchGitHub<T>(url: string, tracker: RateLimitTracker): Promise<T> {
   const response = await fetch(url, {
     headers: getHeaders(),
-    cache: 'force-cache',
-    next: { revalidate: GITHUB_CACHE_SECONDS },
+    ...(ENABLE_GITHUB_LANGUAGE_CACHE
+      ? {
+          cache: 'force-cache' as const,
+          next: { revalidate: GITHUB_CACHE_SECONDS },
+        }
+      : { cache: 'no-store' as const }),
   });
 
   trackRateLimit(response, tracker);
@@ -155,13 +160,7 @@ async function getLanguageTotals(repositories: GitHubRepository[], tracker: Rate
   return totals;
 }
 
-async function getCachedLanguageAnalysis(username: string, cacheVersion: number) {
-  'use cache';
-  cacheLife({
-    revalidate: GITHUB_CACHE_SECONDS,
-    expire: GITHUB_CACHE_SECONDS,
-  });
-
+async function getFreshLanguageAnalysis(username: string, cacheVersion: number) {
   const cachedAt = Date.now();
   const tracker: RateLimitTracker = { current: null };
   const repositories = await getRepositories(username, tracker);
@@ -181,12 +180,24 @@ async function getCachedLanguageAnalysis(username: string, cacheVersion: number)
     repositoriesAnalyzed: repositories.length,
     totalBytes,
     languages,
-    rateLimit: tracker.current ?? await getRateLimitStatus(),
+    cacheEnabled: ENABLE_GITHUB_LANGUAGE_CACHE,
     cachedAt,
     revalidatesAt: cachedAt + GITHUB_CACHE_SECONDS * 1000,
   };
 }
 
+async function getCachedLanguageAnalysis(username: string, cacheVersion: number) {
+  'use cache';
+  cacheLife({
+    revalidate: GITHUB_CACHE_SECONDS,
+    expire: GITHUB_CACHE_SECONDS,
+  });
+
+  return getFreshLanguageAnalysis(username, cacheVersion);
+}
+
 export function analyzeGitHubLanguages(username: string) {
-  return getCachedLanguageAnalysis(username, ANALYSIS_CACHE_VERSION);
+  return ENABLE_GITHUB_LANGUAGE_CACHE
+    ? getCachedLanguageAnalysis(username, ANALYSIS_CACHE_VERSION)
+    : getFreshLanguageAnalysis(username, ANALYSIS_CACHE_VERSION);
 }
