@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {
   analyzeGitHubLanguages,
+  ENABLE_GITHUB_LANGUAGE_CACHE,
+  GITHUB_CACHE_SECONDS,
   getRateLimitStatus,
   isValidGitHubUsername,
 } from '@/lib/github-languages';
@@ -16,7 +18,13 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    return NextResponse.json(await analyzeGitHubLanguages(username));
+    return NextResponse.json(await analyzeGitHubLanguages(username), {
+      headers: {
+        'Cache-Control': ENABLE_GITHUB_LANGUAGE_CACHE
+          ? `public, s-maxage=${GITHUB_CACHE_SECONDS}, stale-while-revalidate=${GITHUB_CACHE_SECONDS}`
+          : 'no-store',
+      },
+    });
   } catch (error) {
     const rateLimit = await getRateLimitStatus();
 
