@@ -1,4 +1,4 @@
-import { cacheLife } from 'next/cache';
+import { unstable_cache } from 'next/cache';
 
 interface GitHubRepository {
   fork: boolean;
@@ -186,15 +186,11 @@ async function getFreshLanguageAnalysis(username: string, cacheVersion: number) 
   };
 }
 
-async function getCachedLanguageAnalysis(username: string, cacheVersion: number) {
-  'use cache';
-  cacheLife({
-    revalidate: GITHUB_CACHE_SECONDS,
-    expire: GITHUB_CACHE_SECONDS,
-  });
-
-  return getFreshLanguageAnalysis(username, cacheVersion);
-}
+const getCachedLanguageAnalysis = unstable_cache(
+  getFreshLanguageAnalysis,
+  ['github-language-analysis'],
+  { revalidate: GITHUB_CACHE_SECONDS }
+);
 
 export function analyzeGitHubLanguages(username: string) {
   return ENABLE_GITHUB_LANGUAGE_CACHE
