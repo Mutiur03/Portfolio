@@ -15,7 +15,7 @@ const navItems = [
   { href: '/#about', label: 'About me' },
   { href: '/#work', label: 'Projects', altHref: '/projects' }, 
   { href: '/#services', label: 'Skills' },
-  { href: '/#github-languages', label: 'Languages' },
+  { href: '/products', label: 'Products' },
   { href: '/#contact-cta', label: 'Contact me', altHref: '/contact' }, 
 ];
 
@@ -93,7 +93,7 @@ export function Navbar() {
       } else if (item.href.startsWith('/#')) {
         isActive = isCurrentPageRoot && activeSection === item.href.substring(2);
       } else {
-        isActive = pathname === item.href;
+        isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
       }
 
       const handleClick = (e: React.MouseEvent) => {
