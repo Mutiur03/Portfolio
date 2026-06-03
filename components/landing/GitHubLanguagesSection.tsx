@@ -51,7 +51,7 @@ export function GitHubLanguagesSection() {
 
   async function analyzeLanguages(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const trimmedUsername = username.trim();
+    const trimmedUsername = username.trim().toLowerCase();
 
     if (!trimmedUsername) {
       setError('Enter a GitHub username.');

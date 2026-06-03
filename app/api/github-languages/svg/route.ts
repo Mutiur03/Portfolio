@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {
-  ENABLE_GITHUB_LANGUAGE_ROUTE_CACHE,
-  GITHUB_CACHE_SECONDS,
   isValidGitHubUsername,
   type LanguageStat,
 } from '@/lib/github-languages';
-import { getRouteCachedGitHubLanguageAnalysis } from '../route-cache';
+import {
+  getCanonicalGitHubUsername,
+  getGitHubLanguageRouteCacheHeaders,
+  getRouteCachedGitHubLanguageAnalysis,
+} from '../route-cache';
 import languageColors from '@/lib/language-colors.json';
 
 const WIDTH = 300;
@@ -95,15 +97,19 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Enter a valid GitHub username.' }, { status: 400 });
   }
 
+  const canonicalUsername = getCanonicalGitHubUsername(username);
+
+  if (username !== canonicalUsername || !request.nextUrl.searchParams.has('username')) {
+    const canonicalUrl = request.nextUrl.clone();
+    canonicalUrl.search = '';
+    canonicalUrl.searchParams.set('username', canonicalUsername);
+    return NextResponse.redirect(canonicalUrl, 308);
+  }
+
   try {
-    const analysis = await getRouteCachedGitHubLanguageAnalysis(username, 'svg');
-    return new NextResponse(renderSvg(username, analysis.languages), {
-      headers: {
-        'Content-Type': 'image/svg+xml; charset=utf-8',
-        'Cache-Control': ENABLE_GITHUB_LANGUAGE_ROUTE_CACHE
-          ? `public, s-maxage=${GITHUB_CACHE_SECONDS}, stale-while-revalidate=${GITHUB_CACHE_SECONDS}`
-          : 'no-store',
-      },
+    const analysis = await getRouteCachedGitHubLanguageAnalysis(canonicalUsername, 'svg');
+    return new NextResponse(renderSvg(canonicalUsername, analysis.languages), {
+      headers: getGitHubLanguageRouteCacheHeaders('image/svg+xml; charset=utf-8'),
     });
   } catch {
     return NextResponse.json({ error: 'Could not generate language SVG.' }, { status: 502 });

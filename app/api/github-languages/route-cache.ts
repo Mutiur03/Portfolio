@@ -14,11 +14,33 @@ interface RouteCacheEntry {
 
 const routeCache = new Map<string, RouteCacheEntry>();
 
+export function getGitHubLanguageRouteCacheHeaders(contentType?: string) {
+  if (!ENABLE_GITHUB_LANGUAGE_ROUTE_CACHE) {
+    return {
+      ...(contentType ? { 'Content-Type': contentType } : {}),
+      'Cache-Control': 'no-store',
+    };
+  }
+
+  const cdnCacheControl = `public, s-maxage=${GITHUB_CACHE_SECONDS}, stale-while-revalidate=${GITHUB_CACHE_SECONDS}`;
+
+  return {
+    ...(contentType ? { 'Content-Type': contentType } : {}),
+    'Cache-Control': 'public, max-age=0',
+    'CDN-Cache-Control': cdnCacheControl,
+    'Vercel-CDN-Cache-Control': cdnCacheControl,
+  };
+}
+
+export function getCanonicalGitHubUsername(username: string) {
+  return username.toLowerCase();
+}
+
 export async function getRouteCachedGitHubLanguageAnalysis(
   username: string,
   source: RouteCacheSource
 ) {
-  const cacheKey = username.toLowerCase();
+  const cacheKey = getCanonicalGitHubUsername(username);
   const now = Date.now();
   const cached = routeCache.get(cacheKey);
 

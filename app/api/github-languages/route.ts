@@ -1,11 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {
-  ENABLE_GITHUB_LANGUAGE_ROUTE_CACHE,
-  GITHUB_CACHE_SECONDS,
   getRateLimitStatus,
   isValidGitHubUsername,
 } from '@/lib/github-languages';
-import { getRouteCachedGitHubLanguageAnalysis } from './route-cache';
+import {
+  getCanonicalGitHubUsername,
+  getGitHubLanguageRouteCacheHeaders,
+  getRouteCachedGitHubLanguageAnalysis,
+} from './route-cache';
 
 export async function GET(request: NextRequest) {
   const username = request.nextUrl.searchParams.get('username')?.trim() ?? '';
@@ -17,13 +19,17 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const canonicalUsername = getCanonicalGitHubUsername(username);
+
+  if (username !== canonicalUsername) {
+    const canonicalUrl = request.nextUrl.clone();
+    canonicalUrl.searchParams.set('username', canonicalUsername);
+    return NextResponse.redirect(canonicalUrl, 308);
+  }
+
   try {
-    return NextResponse.json(await getRouteCachedGitHubLanguageAnalysis(username, 'json'), {
-      headers: {
-        'Cache-Control': ENABLE_GITHUB_LANGUAGE_ROUTE_CACHE
-          ? `public, s-maxage=${GITHUB_CACHE_SECONDS}, stale-while-revalidate=${GITHUB_CACHE_SECONDS}`
-          : 'no-store',
-      },
+    return NextResponse.json(await getRouteCachedGitHubLanguageAnalysis(canonicalUsername, 'json'), {
+      headers: getGitHubLanguageRouteCacheHeaders(),
     });
   } catch (error) {
     const rateLimit = await getRateLimitStatus();
