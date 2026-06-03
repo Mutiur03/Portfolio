@@ -1,5 +1,3 @@
-import { unstable_cache } from 'next/cache';
-
 interface GitHubRepository {
   fork: boolean;
   name: string;
@@ -12,6 +10,16 @@ export interface LanguageStat {
   name: string;
   bytes: number;
   percentage: number;
+}
+
+export interface LanguageAnalysis {
+  username: string;
+  repositoriesAnalyzed: number;
+  totalBytes: number;
+  languages: LanguageStat[];
+  cacheEnabled: boolean;
+  cachedAt: number;
+  revalidatesAt: number;
 }
 
 interface GitHubRateLimit {
@@ -30,12 +38,15 @@ interface RateLimitTracker {
   current: GitHubRateLimit | null;
 }
 
+interface AnalyzeGitHubLanguagesOptions {
+  source?: 'json' | 'svg';
+}
+
 const GITHUB_API_URL = 'https://api.github.com';
 const USERNAME_PATTERN = /^(?!-)(?!.*--)[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?$/i;
 const BATCH_SIZE = 8;
 export const GITHUB_CACHE_SECONDS = 60 * 60;
-export const ENABLE_GITHUB_LANGUAGE_CACHE = true;
-const ANALYSIS_CACHE_VERSION = 3;
+export const ENABLE_GITHUB_LANGUAGE_ROUTE_CACHE = true;
 
 export function isValidGitHubUsername(username: string) {
   return USERNAME_PATTERN.test(username);
@@ -73,12 +84,7 @@ function trackRateLimit(response: Response, tracker: RateLimitTracker) {
 async function fetchGitHub<T>(url: string, tracker: RateLimitTracker): Promise<T> {
   const response = await fetch(url, {
     headers: getHeaders(),
-    ...(ENABLE_GITHUB_LANGUAGE_CACHE
-      ? {
-          cache: 'force-cache' as const,
-          next: { revalidate: GITHUB_CACHE_SECONDS },
-        }
-      : { cache: 'no-store' as const }),
+    cache: 'no-store',
   });
 
   trackRateLimit(response, tracker);
@@ -160,40 +166,60 @@ async function getLanguageTotals(repositories: GitHubRepository[], tracker: Rate
   return totals;
 }
 
-async function getFreshLanguageAnalysis(username: string, cacheVersion: number) {
+export async function analyzeGitHubLanguages(
+  username: string,
+  options: AnalyzeGitHubLanguagesOptions = {}
+): Promise<LanguageAnalysis> {
+  const startedAt = Date.now();
   const cachedAt = Date.now();
   const tracker: RateLimitTracker = { current: null };
-  const repositories = await getRepositories(username, tracker);
-  const totals = await getLanguageTotals(repositories, tracker);
-  const totalBytes = Array.from(totals.values()).reduce((sum, bytes) => sum + bytes, 0);
-  const languages: LanguageStat[] = Array.from(totals.entries())
-    .map(([name, bytes]) => ({
-      name,
-      bytes,
-      percentage: totalBytes === 0 ? 0 : Number(((bytes / totalBytes) * 100).toFixed(2)),
-    }))
-    .sort((a, b) => b.bytes - a.bytes);
 
-  return {
+  console.info('[github-language-analyzer] generation started', {
     username,
-    cacheVersion,
-    repositoriesAnalyzed: repositories.length,
-    totalBytes,
-    languages,
-    cacheEnabled: ENABLE_GITHUB_LANGUAGE_CACHE,
-    cachedAt,
-    revalidatesAt: cachedAt + GITHUB_CACHE_SECONDS * 1000,
-  };
-}
+    source: options.source ?? 'json',
+    routeCacheEnabled: ENABLE_GITHUB_LANGUAGE_ROUTE_CACHE,
+  });
 
-const getCachedLanguageAnalysis = unstable_cache(
-  getFreshLanguageAnalysis,
-  ['github-language-analysis'],
-  { revalidate: GITHUB_CACHE_SECONDS }
-);
+  try {
+    const repositories = await getRepositories(username, tracker);
+    const totals = await getLanguageTotals(repositories, tracker);
+    const totalBytes = Array.from(totals.values()).reduce((sum, bytes) => sum + bytes, 0);
+    const languages: LanguageStat[] = Array.from(totals.entries())
+      .map(([name, bytes]) => ({
+        name,
+        bytes,
+        percentage: totalBytes === 0 ? 0 : Number(((bytes / totalBytes) * 100).toFixed(2)),
+      }))
+      .sort((a, b) => b.bytes - a.bytes);
 
-export function analyzeGitHubLanguages(username: string) {
-  return ENABLE_GITHUB_LANGUAGE_CACHE
-    ? getCachedLanguageAnalysis(username, ANALYSIS_CACHE_VERSION)
-    : getFreshLanguageAnalysis(username, ANALYSIS_CACHE_VERSION);
+    console.info('[github-language-analyzer] generation completed', {
+      username,
+      source: options.source ?? 'json',
+      repositoriesAnalyzed: repositories.length,
+      languagesFound: languages.length,
+      totalBytes,
+      durationMs: Date.now() - startedAt,
+      githubRateLimitRemaining: tracker.current?.remaining ?? null,
+    });
+
+    return {
+      username,
+      repositoriesAnalyzed: repositories.length,
+      totalBytes,
+      languages,
+      cacheEnabled: ENABLE_GITHUB_LANGUAGE_ROUTE_CACHE,
+      cachedAt,
+      revalidatesAt: cachedAt + GITHUB_CACHE_SECONDS * 1000,
+    };
+  } catch (error) {
+    console.error('[github-language-analyzer] generation failed', {
+      username,
+      source: options.source ?? 'json',
+      durationMs: Date.now() - startedAt,
+      githubRateLimitRemaining: tracker.current?.remaining ?? null,
+      error: error instanceof Error ? error.message : 'UNKNOWN_ERROR',
+    });
+
+    throw error;
+  }
 }

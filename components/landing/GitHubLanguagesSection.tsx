@@ -163,12 +163,13 @@ export function GitHubLanguagesSection() {
                   </div>
                   {result.cacheEnabled && Number.isFinite(result.revalidatesAt) && (
                     <p className="mb-6 text-sm text-muted-foreground">
-                      Server cache refreshes after {new Date(result.revalidatesAt).toLocaleString()}.
-                    </p>
+                      API route cache refreshes after {new Date(result.revalidatesAt)
+                        .toLocaleString("en-GB")
+                        .replace(/\//g, "-")}.                    </p>
                   )}
                   {!result.cacheEnabled && (
                     <p className="mb-6 text-sm text-muted-foreground">
-                      Server cache disabled. Showing fresh GitHub data.
+                      API route cache disabled. Showing fresh GitHub data.
                     </p>
                   )}
 
