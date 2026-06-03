@@ -234,6 +234,29 @@ export function GitHubLanguagesSection() {
             </CardContent>
           </Card>
         </AnimatedElement>
+
+        <AnimatedElement delay={200}>
+          <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
+            <div>
+              <h2 className="mb-3 text-2xl font-bold text-primary">GitHub language stats for any public profile</h2>
+              <p className="text-foreground/80">
+                Enter a GitHub username to analyze public, original repositories and see a language breakdown based on GitHub code-byte data.
+              </p>
+            </div>
+            <div>
+              <h3 className="mb-3 text-xl font-semibold text-primary">How language percentages work</h3>
+              <p className="text-foreground/80">
+                The analyzer adds language bytes from each non-fork repository, sorts languages by total usage, and converts them into percentages.
+              </p>
+            </div>
+            <div>
+              <h3 className="mb-3 text-xl font-semibold text-primary">README-ready SVG card</h3>
+              <p className="text-foreground/80">
+                After analysis, copy the Markdown snippet to embed a live GitHub top languages card in your profile README or project documentation.
+              </p>
+            </div>
+          </div>
+        </AnimatedElement>
       </Container>
     </section>
   );

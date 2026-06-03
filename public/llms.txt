@@ -1,0 +1,13 @@
+# Mutiur Rahman
+
+Portfolio and developer tools by Mutiur Rahman, fullstack web developer specializing in React, Next.js, TypeScript, Node.js, and modern web applications.
+
+## Important Pages
+
+- [GitHub Language Analyzer](https://www.mutiurrahman.com/tools/github-language-analyzer): Free developer tool that analyzes public GitHub repositories, calculates programming language usage by GitHub code-byte data, and generates a README-ready SVG language card.
+- [Projects](https://www.mutiurrahman.com/projects): Selected fullstack web development projects.
+- [Contact](https://www.mutiurrahman.com/contact): Project inquiries and collaboration contact page.
+
+## Tool Summary
+
+The GitHub Language Analyzer accepts a GitHub username, analyzes public original repositories, reports top programming languages by percentage, and provides embeddable Markdown for a GitHub README SVG card.

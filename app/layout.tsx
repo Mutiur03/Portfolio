@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     siteName: 'Mutiur Rahman Portfolio',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/opengraph-image',
         width: 1200,
         height: 630,
         alt: 'Mutiur Rahman - Fullstack Developer Portfolio',
@@ -63,14 +63,11 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Mutiur Rahman - Expert Fullstack Web Developer',
     description: 'Professional fullstack web developer specializing in React, Next.js, TypeScript, and Node.js. Building modern web solutions.',
-    images: ['/twitter-image.jpg'],
+    images: ['/twitter-image'],
     creator: '@MutiurRahman03',
   },
   alternates: {
     canonical: 'https://www.mutiurrahman.com/',
-  },
-  verification: {
-    google: 'your-google-verification-code',
   },
 };
 
@@ -102,7 +99,6 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
         <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

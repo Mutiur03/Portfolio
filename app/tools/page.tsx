@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, Wrench } from 'lucide-react';
 import { Container } from '@/components/shared/Container';
@@ -5,6 +6,40 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { toolsData } from '@/lib/tools';
+
+const siteUrl = 'https://www.mutiurrahman.com';
+
+export const metadata: Metadata = {
+  title: 'Free Developer Tools - GitHub Analytics and Web Utilities',
+  description:
+    'Free developer tools by Mutiur Rahman, including a GitHub Language Analyzer for profile language stats and README SVG cards.',
+  alternates: {
+    canonical: `${siteUrl}/tools`,
+  },
+  openGraph: {
+    type: 'website',
+    url: `${siteUrl}/tools`,
+    title: 'Free Developer Tools by Mutiur Rahman',
+    description:
+      'Use practical web utilities for developers, including GitHub language analytics and README-ready profile assets.',
+    siteName: 'Mutiur Rahman Portfolio',
+    images: [
+      {
+        url: '/opengraph-image',
+        width: 1200,
+        height: 630,
+        alt: 'Developer tools by Mutiur Rahman',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Free Developer Tools by Mutiur Rahman',
+    description: 'Developer utilities for GitHub analytics, README assets, and web workflows.',
+    images: ['/twitter-image'],
+    creator: '@MutiurRahman03',
+  },
+};
 
 export default function ToolsPage() {
   return (
