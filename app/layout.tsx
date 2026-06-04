@@ -131,7 +131,7 @@ export default function RootLayout({
       <body suppressHydrationWarning={true}>
         <VAnalytics />
         <Analytics />
-        {observaApiKey && <Observa apiKey={observaApiKey} />}
+        {observaApiKey && <Observa apiKey={observaApiKey} autoTrack={{ webVitals: false }} />}
         <AppProviders>
           <Navbar />
           <main className="flex-grow">
