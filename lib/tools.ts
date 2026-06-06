@@ -11,6 +11,6 @@ export const toolsData: Tool[] = [
     description:
       'Analyze any public GitHub account and see its language mix based on repository code bytes.',
     href: '/tools/github-language-analyzer',
-    tags: ['GitHub API', 'Next.js', 'Analytics'],
+    tags: ['GitHub API','GraphQL', 'Next.js', 'Analytics'],
   },
 ];
