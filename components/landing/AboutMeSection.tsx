@@ -40,10 +40,10 @@ export function AboutMeSection() {
               About Me
             </h2>
             <p className="text-base sm:text-lg text-foreground/80 mb-3 md:mb-4 text-center md:text-left">
-              Hi, I&apos;m a second-year Computer Science and Engineering student at <strong>KUET (Khulna University of Engineering & Technology)</strong>, passionate about full-stack web development. Alongside my academic journey, I&apos;ve been actively building real-world applications using <strong>React</strong>, <strong>Next.js</strong>, <strong>Node.js</strong>, and <strong>PostgreSQL</strong>.
+              Hi, I'm a CSE student at <strong>KUET (Khulna University of Engineering &amp; Technology)</strong>, and currently working full-time, remote, as a fullstack engineer. Day to day that's multi-tenant architecture, AWS infrastructure, and wiring up the OAuth and billing integrations that come with a real SaaS product.
             </p>
             <p className="text-base sm:text-lg text-foreground/80 mb-6 md:mb-8 text-center md:text-left">
-              I&apos;m always eager to explore new technologies, collaborate on meaningful projects, and turn complex ideas into seamless, user-friendly digital solutions. Outside of coding, I enjoy learning from open-source communities and experimenting with new tools.
+              Outside of client work I build and ship my own products end to end — a school management platform actually used by a school, a crowdfunding platform, and a few client sites. I enjoy learning from open-source communities and experimenting with new tools.
             </p>
 
             {/* Academic Timeline */}

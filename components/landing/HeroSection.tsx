@@ -37,8 +37,7 @@ export function HeroSection() {
 
         <AnimatedElement delay={400}>
           <p className="text-md md:text-lg text-foreground/70 mb-10 max-w-5xl font-body">
-            I am a fullstack developer from Khulna, Bangladesh. I specialize in creating dynamic and responsive websites using modern technologies like React, Next.js, Node.js, and more.
-          </p>
+          CSE student at KUET, currently working full-time, remote, building multi-tenant SaaS infrastructure — AWS, CI/CD, and the integrations that hold a production system together.          </p>
         </AnimatedElement>
 
         <AnimatedElement delay={500} className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -49,7 +48,7 @@ export function HeroSection() {
           </Button>
           <Button asChild variant="outline" size="lg" className="rounded-full text-foreground border-foreground/30 hover:border-accent hover:text-accent shadow-md px-8">
             {/* Assuming resume is a static file in /public */}
-            <Link href="/Mutiur Rahman.pdf" target="_blank" rel="noopener noreferrer">
+            <Link href="/Mutiur_Rahman_Resume.pdf" target="_blank" rel="noopener noreferrer">
               my resume <Download className="ml-2 h-5 w-5" />
             </Link>
           </Button>
