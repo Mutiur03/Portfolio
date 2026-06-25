@@ -321,56 +321,56 @@ Karubid is a comprehensive web platform designed for a Bangladesh-based company 
       { url: "/portfolio/portfolio_7.png" },
     ],
   },
-  {
-    id: "5",
-    title: "Altura Call Automation",
-    slug: "altura-call-automation",
-    shortDescription:
-      "AI-powered voice agent platform for automated outbound and inbound call workflows.",
-    longDescription: `
-<h2>Altura Call Automation — AI Voice Agent Platform</h2>
-<p>
-A client project (Alturavent) delivering an end-to-end, multi-tenant call automation system powered by Vapi voice AI agents. The platform orchestrates conversational flows, call routing, billing, and backend services across a Turborepo monorepo architecture. Specific client implementation details are kept general here out of respect for client confidentiality.
-</p>
-<h3>Features</h3>
-<ul>
-<li>AI voice agents for automated call handling and configurable conversation flows</li>
-<li>NestJS backend services for multi-tenant call orchestration, billing, and webhook handling</li>
-<li>Next.js frontend for agent configuration, call analytics, and account management</li>
-<li>Monorepo structure with shared packages and coordinated deployments</li>
-<li>Extensible pipeline for connecting telephony providers and AI models</li>
-</ul>
-<h3>Tech Stack</h3>
-<ul>
-<li><strong>Monorepo:</strong> Turborepo</li>
-<li><strong>Backend:</strong> NestJS, TypeScript, Drizzle ORM</li>
-<li><strong>Frontend:</strong> Next.js, React</li>
-<li><strong>AI:</strong> Vapi voice agents</li>
-<li><strong>Billing:</strong> Stripe</li>
-</ul>
-<h3>What I Learned</h3>
-<ul>
-<li>Integrating real-time voice AI into production backend services</li>
-<li>Structuring multi-app, multi-tenant monorepos with Turborepo for client deliverables</li>
-<li>Designing webhook-driven architectures for telephony and conversational AI</li>
-</ul>
-`,
-    technologies: [
-      "NestJS",
-      "Next.js",
-      "Turborepo",
-      "TypeScript",
-      "Vapi",
-      "React",
-      "Drizzle ORM",
-      "Stripe",
-      "REST API",
-    ],
-    imageUrl: "/projects/placeholder-cover.svg",
-    category: "saas",
-    videoUrl: "",
-    githubUrl: "https://github.com/Mutiur03/call-automation",
-  },
+//   {
+//     id: "5",
+//     title: "Altura Call Automation",
+//     slug: "altura-call-automation",
+//     shortDescription:
+//       "AI-powered voice agent platform for automated outbound and inbound call workflows.",
+//     longDescription: `
+// <h2>Altura Call Automation — AI Voice Agent Platform</h2>
+// <p>
+// A client project (Alturavent) delivering an end-to-end, multi-tenant call automation system powered by Vapi voice AI agents. The platform orchestrates conversational flows, call routing, billing, and backend services across a Turborepo monorepo architecture. Specific client implementation details are kept general here out of respect for client confidentiality.
+// </p>
+// <h3>Features</h3>
+// <ul>
+// <li>AI voice agents for automated call handling and configurable conversation flows</li>
+// <li>NestJS backend services for multi-tenant call orchestration, billing, and webhook handling</li>
+// <li>Next.js frontend for agent configuration, call analytics, and account management</li>
+// <li>Monorepo structure with shared packages and coordinated deployments</li>
+// <li>Extensible pipeline for connecting telephony providers and AI models</li>
+// </ul>
+// <h3>Tech Stack</h3>
+// <ul>
+// <li><strong>Monorepo:</strong> Turborepo</li>
+// <li><strong>Backend:</strong> NestJS, TypeScript, Drizzle ORM</li>
+// <li><strong>Frontend:</strong> Next.js, React</li>
+// <li><strong>AI:</strong> Vapi voice agents</li>
+// <li><strong>Billing:</strong> Stripe</li>
+// </ul>
+// <h3>What I Learned</h3>
+// <ul>
+// <li>Integrating real-time voice AI into production backend services</li>
+// <li>Structuring multi-app, multi-tenant monorepos with Turborepo for client deliverables</li>
+// <li>Designing webhook-driven architectures for telephony and conversational AI</li>
+// </ul>
+// `,
+//     technologies: [
+//       "NestJS",
+//       "Next.js",
+//       "Turborepo",
+//       "TypeScript",
+//       "Vapi",
+//       "React",
+//       "Drizzle ORM",
+//       "Stripe",
+//       "REST API",
+//     ],
+//     imageUrl: "/projects/placeholder-cover.svg",
+//     category: "saas",
+//     videoUrl: "",
+//     githubUrl: "https://github.com/Mutiur03/call-automation",
+//   },
   {
     id: "6",
     title: "Printing Kiosk",
@@ -420,55 +420,55 @@ A client project building a printing-kiosk system split into two independently d
     videoUrl: "",
     githubUrl: "https://github.com/Mutiur03/Printing-kiosk",
   },
-  {
-    id: "7",
-    title: "OneSource Platform",
-    slug: "one-source",
-    shortDescription:
-      "Multi-tenant analytics platform unifying e-commerce and marketing data across a Turborepo monorepo.",
-    longDescription: `
-<h2>OneSource — Multi-Tenant Analytics Platform</h2>
-<p>
-A client project (Alturavent) delivering a multi-tenant SaaS platform that unifies e-commerce and marketing analytics across 13+ third-party integrations (Shopify, WooCommerce, Google/Meta/TikTok/Amazon Ads, GA4, HubSpot, and more) into a single dashboard. Built as a Turborepo monorepo spanning a NestJS API, a Vue storefront, a React marketing site, and a Python AI microservice. Specific client implementation details are kept general here out of respect for client confidentiality.
-</p>
-<h3>Features</h3>
-<ul>
-<li>Multi-tenant architecture with isolated data per company and configurable workspaces</li>
-<li>NestJS backend services for analytics pipelines, integrations, and tenant management</li>
-<li>Vue and React frontends tailored to different user roles and dashboards</li>
-<li>AI-generated insights and reporting powered by an integrated language model</li>
-<li>Shared packages for types, utilities, and API clients across apps</li>
-</ul>
-<h3>Tech Stack</h3>
-<ul>
-<li><strong>Monorepo:</strong> Turborepo</li>
-<li><strong>Backend:</strong> NestJS, TypeORM, TypeScript</li>
-<li><strong>Frontends:</strong> Vue 3, React</li>
-<li><strong>AI Microservice:</strong> Python</li>
-<li><strong>Architecture:</strong> Multi-tenant SaaS</li>
-</ul>
-<h3>What I Learned</h3>
-<ul>
-<li>Designing tenant isolation strategies for analytics platforms at scale</li>
-<li>Coordinating multiple frontend frameworks within a single monorepo</li>
-<li>Building modular NestJS services that aggregate many third-party data sources reliably</li>
-</ul>
-`,
-    technologies: [
-      "Turborepo",
-      "NestJS",
-      "TypeORM",
-      "Vue",
-      "React",
-      "TypeScript",
-      "Python",
-      "REST API",
-    ],
-    imageUrl: "/projects/placeholder-cover.svg",
-    category: "saas",
-    videoUrl: "",
-    githubUrl: "https://github.com/Mutiur03/one-source",
-  },
+//   {
+//     id: "7",
+//     title: "OneSource Platform",
+//     slug: "one-source",
+//     shortDescription:
+//       "Multi-tenant analytics platform unifying e-commerce and marketing data across a Turborepo monorepo.",
+//     longDescription: `
+// <h2>OneSource — Multi-Tenant Analytics Platform</h2>
+// <p>
+// A client project (Alturavent) delivering a multi-tenant SaaS platform that unifies e-commerce and marketing analytics across 13+ third-party integrations (Shopify, WooCommerce, Google/Meta/TikTok/Amazon Ads, GA4, HubSpot, and more) into a single dashboard. Built as a Turborepo monorepo spanning a NestJS API, a Vue storefront, a React marketing site, and a Python AI microservice. Specific client implementation details are kept general here out of respect for client confidentiality.
+// </p>
+// <h3>Features</h3>
+// <ul>
+// <li>Multi-tenant architecture with isolated data per company and configurable workspaces</li>
+// <li>NestJS backend services for analytics pipelines, integrations, and tenant management</li>
+// <li>Vue and React frontends tailored to different user roles and dashboards</li>
+// <li>AI-generated insights and reporting powered by an integrated language model</li>
+// <li>Shared packages for types, utilities, and API clients across apps</li>
+// </ul>
+// <h3>Tech Stack</h3>
+// <ul>
+// <li><strong>Monorepo:</strong> Turborepo</li>
+// <li><strong>Backend:</strong> NestJS, TypeORM, TypeScript</li>
+// <li><strong>Frontends:</strong> Vue 3, React</li>
+// <li><strong>AI Microservice:</strong> Python</li>
+// <li><strong>Architecture:</strong> Multi-tenant SaaS</li>
+// </ul>
+// <h3>What I Learned</h3>
+// <ul>
+// <li>Designing tenant isolation strategies for analytics platforms at scale</li>
+// <li>Coordinating multiple frontend frameworks within a single monorepo</li>
+// <li>Building modular NestJS services that aggregate many third-party data sources reliably</li>
+// </ul>
+// `,
+//     technologies: [
+//       "Turborepo",
+//       "NestJS",
+//       "TypeORM",
+//       "Vue",
+//       "React",
+//       "TypeScript",
+//       "Python",
+//       "REST API",
+//     ],
+//     imageUrl: "/projects/placeholder-cover.svg",
+//     category: "saas",
+//     videoUrl: "",
+//     githubUrl: "https://github.com/Mutiur03/one-source",
+//   },
   {
     id: "8",
     title: "Observa",
